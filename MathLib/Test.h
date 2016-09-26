@@ -1,4 +1,5 @@
 #pragma once
 
+int donothin(int x);
 
-void donothin(int x);
+float test_quad(float x);
