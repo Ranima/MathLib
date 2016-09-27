@@ -2,6 +2,8 @@
 #include <cstdio>
 
 #include "Test.h"
+#include "vec2.h"
+#include "vec3.h"
 
 
 int main()
@@ -40,6 +42,19 @@ int main()
 
 	assert(pointDistance({ 0,0,1,0 }, { 0,0,0 }) == 0);
 	assert(pointDistance({ 0,0,1,0 }, { 0,0,0 }) == 0);
+
+
+
+
+	assert((vec2{ 0,0 } == vec2{ 0,0 }));
+	assert((vec2{ 1,0 } == vec2{ 1,0 }));
+
+	assert((vec2{ 1,1 } + vec2{ -1,0 } == vec2{ 0,1 }));
+	assert((vec2{ 1,1 } - vec2{  1,0 } == vec2{ 0,1 }));
+
+	vec2 var = { 4,0 };
+	var += vec2{ -3,1 };
+	assert((var == vec2{ 1,1 }));
 
 	getchar();
 	return 0;
