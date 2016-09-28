@@ -48,7 +48,13 @@ bool operator!=(const vec3 & lhs, const vec3 & rhs)
 
 float magnitude(const vec3 & v)
 {
-	return sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
+	return sqrt( v.x*v.x + v.y*v.y + v.z*v.z );
+}
+
+vec3 normal(const vec3 & v)
+{
+	vec3 retval = v / magnitude(v);
+	return retval;
 }
 
 vec3 & operator+=(vec3 & lhs, const vec3 & rhs)
@@ -69,4 +75,14 @@ vec3 & operator*=(vec3 & lhs, const vec3 & rhs)
 vec3 & operator/=(vec3 & lhs, const vec3 & rhs)
 {
 	return lhs = lhs / rhs;
+}
+
+float dot(const vec3 & rhs, const vec3 & lhs)
+{
+	return rhs.x * lhs.x + rhs.y * lhs.y + rhs.z * lhs.z;
+}
+
+float angleBetween(const vec3 & rhs, const vec3 & lhs)
+{
+	return acos(dot(normal(rhs), normal(lhs)));
 }
