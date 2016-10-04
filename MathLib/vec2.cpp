@@ -103,3 +103,40 @@ float magnitude(const vec2 &v)
 	return sqrt(v.x*v.x + v.y*v.y);
 }
 
+vec2 Lerp(const vec2 & start, const vec2 & end, float alpha)
+{
+	return start + alpha * (end - start);
+}
+
+vec2 QuadBezier(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha)
+{
+	vec2 mid1 = Lerp(start, mid, alpha);
+	vec2 mid2 = Lerp(mid, end, alpha);
+	return Lerp(mid1, mid2, alpha);
+}
+
+vec2 HermiteSpline(const vec2 & start, const vec2 & s_tan, const vec2 & end, const vec2 & e_tan, float alpha)
+{
+	float tsq = alpha*alpha;
+	float tcub = tsq*alpha;
+
+	float h00 = 2 * tcub - 3 * tsq + 1;
+	float h01 = -2 * tcub + 3 * tsq;
+	float h10 = tcub - 2 * tsq + alpha;
+	float h11 = tcub - tsq;
+
+	return h00 * start + h10*s_tan + h01*end + h11*e_tan;
+}
+
+vec2 CardinalSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float tightness, float alpha)
+{
+	vec2 s_tan = (mid - start)*tightness,
+		e_tan = (end - mid)*tightness;
+
+	return HermiteSpline(start, s_tan, end, e_tan, alpha);
+}
+
+vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha)
+{
+	return CardinalSpline(start, mid, end, 0.5, alpha);
+}

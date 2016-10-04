@@ -12,7 +12,7 @@ struct quad_results
 
 quad_results quad(float a, float b, float c);
 
-float lerp(float start, float end, float t);
+//float lerp(float start, float end, float t);
 
 struct point { float x, y; };
 float distance(point P1, point P2);

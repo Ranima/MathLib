@@ -6,7 +6,7 @@ class Transform
 {
 public:
 	Transform();
-	Transform(float X, float y, float w, float h);
+	Transform(float x, float y);
 
 	vec2 position;
 	vec2 scale;

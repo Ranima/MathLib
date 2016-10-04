@@ -43,5 +43,5 @@ void Transform::debugDraw()
 
 	sfw::drawLine(position.x, position.y, upEnd.x, upEnd.y, GREEN);
 
-	sfw::drawLine(position.x, position.y, x, y, BLUE);
+	//sfw::drawLine(position.x, position.y, x, y, BLUE);
 }

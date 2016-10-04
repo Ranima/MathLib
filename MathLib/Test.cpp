@@ -27,10 +27,10 @@
 		return retval;
 	}
 
-	float lerp(float start, float end, float t)
+	/*float lerp(float start, float end, float t)
 	{
 		return start + t * (end - start);
-	}
+	}*/
 
 	float distance(point P1, point P2)
 	{

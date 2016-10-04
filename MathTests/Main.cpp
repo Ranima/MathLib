@@ -27,10 +27,10 @@ int main()
 	assert(quad(1, -2, 0).right_root == 2);
 	assert(quad(1, 0, 0).left_root == quad(1, 0, 0).right_root);
 
-	assert(lerp(0,  1,   0) ==  0);
+	/*assert(lerp(0,  1,   0) ==  0);
 	assert(lerp(0,  1,   1) ==  1);
 	assert(lerp(0,  1,  -1) == -1);
-	assert(lerp(1, -1, .5f) ==  0);
+	assert(lerp(1, -1, .5f) ==  0);*/
 
 	assert(distance({ 0,0 }, { 0,0 }) == 0);
 	assert(distance({ 0,0 }, { 5,0 }) == 5);

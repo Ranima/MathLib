@@ -5,16 +5,129 @@
 
 void main()
 {
-	sfw::initContext();
-	Transform trans;
+	sfw::initContext(800,800);
+	//Transform trans;
 
-	trans.position = vec2{ 400, 300 };
-	trans.facing = deg2rad(45);
-	trans.scale = vec2{ 24,8 };
+	//int j = int(4);
+	//int k(4);
+	//int l = { 4 };
+	//int n{ 4 };
+
+	//Transform tl = Transform(400, 300);
+	//Transform tn = { 400, 300 };
+	//Transform tm( 400, 300 );
+	//Transform tq{ 400, 300 };
+
+	////trans.position = vec2{ 400, 300 };
+	//trans.facing = deg2rad(45);
+	//trans.scale = vec2{ 24,8 };
+
+	//vec2 basis		= { 40,0 };
+	//float ang_vec	= 0;
 
 	while (sfw::stepContext())
 	{
-		trans.debugDraw();
+		for (int i = 0; i < 100; ++i)
+		{
+			/*float x1 = i / 100.f;
+			float y1 = linearHalf(x1);
+
+			float x2 = (i + 1) / 100.f;
+			float y2 = linearHalf(x2);
+
+			x1 *= 800;
+			x2 *= 800;
+			y1 *= 800;
+			y2 *= 800;
+
+			sfw::drawLine(x1, y1, x2, y2, BLUE);
+
+			float a1 = i / 100.f;
+			float b1 = speedInc(a1);
+
+			float a2 = (i + 1) / 100.f;
+			float b2 = speedInc(a2);
+
+			a1 *= 800;
+			a2 *= 800;
+			b1 *= 800;
+			b2 *= 800;
+
+			sfw::drawLine(a1 - 10, b1, a2 - 10, b2, MAGENTA);
+
+			float w1 = i / 100.f;
+			float z1 = speedDec(w1);
+
+			float w2 = (i + 1) / 100.f;
+			float z2 = speedDec(w2);
+
+			w1 *= 800;
+			w2 *= 800;
+			z1 *= 800;
+			z2 *= 800;
+
+			sfw::drawLine(w1, z1, w2, z2, YELLOW);
+
+			float s1 = i / 100.f;
+			float d1 = Hangle(s1);
+
+			float s2 = (i + 1) / 100.f;
+			float d2 = Hangle(s2);
+
+			s1 *= 800;
+			s2 *= 800;
+			d1 *= 800;
+			d2 *= 800;
+
+			sfw::drawLine(s1, d1, s2, d2, GREEN);
+
+			float q1 = i / 100.f;
+			float e1 = bounce(q1);
+
+			float q2 = (i + 1) / 100.f;
+			float e2 = bounce(q2);
+
+			q1 *= 800;
+			q2 *= 800;
+			e1 *= 800;
+			e2 *= 800;
+
+			sfw::drawLine(q1, e1, q2, e2, CYAN);
+
+			float j1 = i / 100.f;
+			float k1 = bounceFlip(j1);
+
+			float j2 = (i + 1) / 100.f;
+			float k2 = bounceFlip(j2);
+
+			j1 *= 800;
+			j2 *= 800;
+			k1 *= 800;
+			k2 *= 800;
+
+			sfw::drawLine(j1, k1, j2, k2, WHITE);
+
+			float o1 = i / 100.f;
+			float p1 = parabFlip(o1);
+
+			float o2 = (i + 1) / 100.f;
+			float p2 = parabFlip(o2);
+
+			o1 *= 800;
+			o2 *= 800;
+			p1 *= 800;
+			p2 *= 800;
+
+			sfw::drawLine(o1, p1, o2, p2, BLACK);*/
+		}
+		//ang_vec += sfw::getDeltaTime();
+		//vec2 incident = fromAngle(ang_vec) * 40;
+		//float proj = dot(basis, normal(incident));
+
+		//sfw::drawLine(400, 300, 400 + basis.x, 300 + basis.y, RED);
+		//sfw::drawLine(400, 300, 400 + incident.x, 300 + incident.y, CYAN);
+		//sfw::drawLine(400, 300, 400 + proj, 300, GREEN);
+		////trans.debugDraw();
 	}
 
 	sfw::termContext();
