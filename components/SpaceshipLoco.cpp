@@ -3,34 +3,38 @@
 
 SpaceshipLocomotion::SpaceshipLocomotion()
 {
-	thrust = 0.0f;
-	maxthrust = 100.0f;
+	vertThrust = 0.0f;
+	horzthrust = 0.0f;
+	stopAction = 0.0f;
+	breakPower = 0.0f;
 
-	turn = 0.0f;
-	maxTurn = 100.0f;
-	turnSpeed = 1.0f;
-
-	speed = 10.0f;
+	maxspeed = 1000.0f;	
+	turnSpeed = 4.0f;
+	speed = 900.0f;
 }
 
-void SpaceshipLocomotion::doThrust()
+void SpaceshipLocomotion::doThrust(float x)
 {
-	if (sfw::getKey('W')) thrust = 1;
+	vertThrust += x;
 }
 
-void SpaceshipLocomotion::doTurn()
+void SpaceshipLocomotion::doTurn(float x)
 {
-	if (sfw::getKey('Q')) turn += 1;
-	if (sfw::getKey('W')) turn -= 1;
+	horzthrust += x;
 }
 
-void SpaceshipLocomotion::update(Rigidbody & rigidbody, float deltaTime)
+void SpaceshipLocomotion::doStop(float value)
 {
-	doThrust();
-	doTurn();
+	stopAction += value;
+}
 
-	rigidbody.acceleration.x = 
+void SpaceshipLocomotion::update(Rigidbody & rigidbody, Transform &trans)
+{
+	rigidbody.addForce(trans.getUp() * speed * vertThrust);
+	rigidbody.addTorque(turnSpeed * horzthrust);
 
-	thrust = 0.0f;
-	turn = 0.0f;
+	rigidbody.addForce(-rigidbody.velocity * breakPower * stopAction);
+	rigidbody.addTorque(-rigidbody.angularVelocity * breakPower * stopAction);
+
+	horzthrust = vertThrust = stopAction = 0;
 }

@@ -27,6 +27,14 @@ vec2 operator-(const vec2 &lhs, const vec2 &rhs)
 	return vec2{ lhs.x - rhs.x, lhs.y - rhs.y };
 }
 
+vec2 operator-(const vec2 & vec)
+{
+	float x = vec.x - (vec.x * 2);
+	float y = vec.y - (vec.y * 2);
+	vec2 retval{ x,y };
+	return retval;
+}
+
 vec2 operator*(const vec2 & lhs, const vec2 & rhs)
 {
 	return vec2{ lhs.x * rhs.x, lhs.y * rhs.y};

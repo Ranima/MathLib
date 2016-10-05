@@ -3,13 +3,15 @@
 #include "Flops.h"
 #include "Transform.h"
 #include "Rigidbody.h"
+#include "SpaceshipLoco.h"
+#include "spaceshipControler.h"
 
 void main()
 {
 	float SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 	//Transform trans;
-
+	float steps = 100;
 	//Useing A to hide junk for the moment
 	bool A = false;
 
@@ -20,6 +22,8 @@ void main()
 
 	Transform playerTrans{400, 400};
 	Rigidbody playerRigid;
+	SpaceshipLocomotion loco;
+	SpaceshipController spaceshipcon;
 	playerRigid.velocity = vec2{ 0,0 };
 
 	//Junk stuff
@@ -53,7 +57,7 @@ void main()
 		float deltaTime = sfw::getDeltaTime();
 
 
-
+		
 		/*if (sfw::getKey('W')) playerRigid.acceleration.y += 10.0f;
 		if (sfw::getKey('S')) playerRigid.acceleration.y -= 10.0f;
 		if (sfw::getKey('A')) playerRigid.acceleration.x -= 10.0f;
@@ -72,10 +76,12 @@ void main()
 		else if (playerTrans.position.y < 0.0f)
 			playerTrans.position.y = SCREEN_WIDTH;
 
+		spaceshipcon.update(loco);
+		loco.update(playerRigid, playerTrans);
 		playerRigid.integrate(playerTrans, deltaTime);
 
 		playerTrans.debugDraw();
-
+		playerRigid.debugDraw(playerTrans);
 		//Junk stuff
 		while (A == true) {
 			/*sfw::drawCircle(player.x, player.y, 15, 12, BLUE);
