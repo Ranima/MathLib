@@ -42,7 +42,7 @@ float speedDec(float x)
 	return 1 - speedInc(1 - x);
 }
 
-float Hangle(float x)
+float hAngle(float x)
 {
 	return x < 0.5 ? 2 * x : -2 * (x - 1);
 }
@@ -108,5 +108,10 @@ float cubicBezier(float start, float midA, float midB, float end, float alpha)
 {
 	float mid1 = lerp(start, midA, alpha);
 	float mid2 = lerp(midA, midB, alpha);
-	float mid3
+	float mid3 = lerp(midB, end, alpha);
+
+	float cuBez1 = lerp(mid1, mid2, alpha);
+	float cuBez2 = lerp(mid2, mid3, alpha);
+	
+	return lerp(cuBez1, cuBez2, alpha);
 }

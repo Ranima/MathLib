@@ -44,3 +44,4 @@ vec2 HermiteSpline(const vec2 & start, const vec2 & s_tan,
 	const vec2 & end, const vec2 & e_tan, float alpha);
 vec2 CardinalSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float tightness, float alpha);
 vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha);
+vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const vec2 & end, float alpha);

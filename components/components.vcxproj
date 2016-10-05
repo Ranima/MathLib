@@ -119,10 +119,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="spaceshipControler.cpp" />
+    <ClCompile Include="SpaceshipLoco.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="sfwdraw.h" />
+    <ClInclude Include="spaceshipControler.h" />
+    <ClInclude Include="SpaceshipLoco.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

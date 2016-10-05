@@ -140,3 +140,15 @@ vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float 
 {
 	return CardinalSpline(start, mid, end, 0.5, alpha);
 }
+
+vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const vec2 & end, float alpha)
+{
+	vec2 mid1 = Lerp(start, midA, alpha);
+	vec2 mid2 = Lerp(midA, midB, alpha);
+	vec2 mid3 = Lerp(midB, end, alpha);
+
+	vec2 cuBez1 = Lerp(mid1, mid2, alpha);
+	vec2 cuBez2 = Lerp(mid2, mid3, alpha);
+
+	return Lerp(cuBez1, cuBez2, alpha);
+}

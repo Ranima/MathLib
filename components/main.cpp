@@ -2,132 +2,216 @@
 #include "vec2.h"
 #include "Flops.h"
 #include "Transform.h"
+#include "Rigidbody.h"
 
 void main()
 {
-	sfw::initContext(800,800);
+	float SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
+	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 	//Transform trans;
 
-	//int j = int(4);
-	//int k(4);
-	//int l = { 4 };
-	//int n{ 4 };
+	//Useing A to hide junk for the moment
+	bool A = false;
 
-	//Transform tl = Transform(400, 300);
-	//Transform tn = { 400, 300 };
-	//Transform tm( 400, 300 );
-	//Transform tq{ 400, 300 };
+	//!!!Project start!!!
+	vec2 start = { 200,200 },
+		end = { 600,600 },
+		mid = { 200,600 };
 
-	////trans.position = vec2{ 400, 300 };
-	//trans.facing = deg2rad(45);
-	//trans.scale = vec2{ 24,8 };
+	Transform playerTrans{400, 400};
+	Rigidbody playerRigid;
+	playerRigid.velocity = vec2{ 0,0 };
 
-	//vec2 basis		= { 40,0 };
-	//float ang_vec	= 0;
+	//Junk stuff
+	while (A == true)
+	{
+		vec2 player = { 400, 400 };
+		vec2 velocity = { 0,0 };
+	}
+	while (A == true)
+	{
+		//int j = int(4);
+		//int k(4);
+		//int l = { 4 };
+		//int n{ 4 };
+
+		//Transform tl = Transform(400, 300);
+		//Transform tn = { 400, 300 };
+		//Transform tm( 400, 300 );
+		//Transform tq{ 400, 300 };
+
+		////trans.position = vec2{ 400, 300 };
+		//trans.facing = deg2rad(45);
+		//trans.scale = vec2{ 24,8 };
+
+		//vec2 basis		= { 40,0 };
+		//float ang_vec	= 0;
+	}
 
 	while (sfw::stepContext())
 	{
-		for (int i = 0; i < 100; ++i)
-		{
-			/*float x1 = i / 100.f;
-			float y1 = linearHalf(x1);
+		float deltaTime = sfw::getDeltaTime();
 
-			float x2 = (i + 1) / 100.f;
-			float y2 = linearHalf(x2);
 
-			x1 *= 800;
-			x2 *= 800;
-			y1 *= 800;
-			y2 *= 800;
 
-			sfw::drawLine(x1, y1, x2, y2, BLUE);
+		/*if (sfw::getKey('W')) playerRigid.acceleration.y += 10.0f;
+		if (sfw::getKey('S')) playerRigid.acceleration.y -= 10.0f;
+		if (sfw::getKey('A')) playerRigid.acceleration.x -= 10.0f;
+		if (sfw::getKey('D')) playerRigid.acceleration.x += 10.0f;
 
-			float a1 = i / 100.f;
-			float b1 = speedInc(a1);
+		if (sfw::getKey('Q')) playerRigid.angularAcceleration += 1.0f;
+		if (sfw::getKey('E')) playerRigid.angularAcceleration -= 1.0f;*/
 
-			float a2 = (i + 1) / 100.f;
-			float b2 = speedInc(a2);
+		if (playerTrans.position.x > SCREEN_WIDTH)
+			playerTrans.position.x = 0.0f;
+		else if (playerTrans.position.x < 0.0f)
+			playerTrans.position.x = SCREEN_WIDTH;
 
-			a1 *= 800;
-			a2 *= 800;
-			b1 *= 800;
-			b2 *= 800;
+		if (playerTrans.position.y > SCREEN_WIDTH)
+			playerTrans.position.y = 0.0f;
+		else if (playerTrans.position.y < 0.0f)
+			playerTrans.position.y = SCREEN_WIDTH;
 
-			sfw::drawLine(a1 - 10, b1, a2 - 10, b2, MAGENTA);
+		playerRigid.integrate(playerTrans, deltaTime);
 
-			float w1 = i / 100.f;
-			float z1 = speedDec(w1);
+		playerTrans.debugDraw();
 
-			float w2 = (i + 1) / 100.f;
-			float z2 = speedDec(w2);
+		//Junk stuff
+		while (A == true) {
+			/*sfw::drawCircle(player.x, player.y, 15, 12, BLUE);
 
-			w1 *= 800;
-			w2 *= 800;
-			z1 *= 800;
-			z2 *= 800;
+			if (sfw::getKey('W')) velocity.y += 11.0f;
+			if (sfw::getKey('S')) velocity.y -= 11.0f;
+			if (sfw::getKey('D')) velocity.x += 11.0f;
+			if (sfw::getKey('A')) velocity.x -= 11.0f;
 
-			sfw::drawLine(w1, z1, w2, z2, YELLOW);
+			if (sfw::getKey('W') == false &&
+				sfw::getKey('S') == false)
+				velocity.y -= (velocity.y)* sfw::getDeltaTime();
+			if (sfw::getKey('D') == false &&
+				sfw::getKey('A') == false)
+				velocity.x -= (velocity.x)* sfw::getDeltaTime();
 
-			float s1 = i / 100.f;
-			float d1 = Hangle(s1);
+			player += velocity * sfw::getDeltaTime();
 
-			float s2 = (i + 1) / 100.f;
-			float d2 = Hangle(s2);
+			if (velocity.x < 10.f && velocity.x > -10.f) velocity.x = 0.f;
+			if (velocity.y < 10.f && velocity.y > -10.f) velocity.y = 0.f;
+			if (velocity.x > 100.f) velocity.x = 100.f;
+			if (velocity.x < -100.f) velocity.x = -100.f;
+			if (velocity.y > 100.f) velocity.y = 100.f;
+			if (velocity.y < -100.f) velocity.y = -100.f;
 
-			s1 *= 800;
-			s2 *= 800;
-			d1 *= 800;
-			d2 *= 800;
+			if (player.x < 0) player.x = 800;
+			if (player.x > 800) player.x = 0;
+			if (player.y < 0) player.y = 800;
+			if (player.y > 800) player.y = 0;*/
 
-			sfw::drawLine(s1, d1, s2, d2, GREEN);
+			//Junk stuff
+			while (A == true)
+			{
+				//for (int i = 0; i < 100; ++i)
+				//{
+				//	/*float x1 = i / 100.f;
+				//	float y1 = linearHalf(x1);
 
-			float q1 = i / 100.f;
-			float e1 = bounce(q1);
+				//	float x2 = (i + 1) / 100.f;
+				//	float y2 = linearHalf(x2);
 
-			float q2 = (i + 1) / 100.f;
-			float e2 = bounce(q2);
+				//	x1 *= 800;
+				//	x2 *= 800;
+				//	y1 *= 800;
+				//	y2 *= 800;
 
-			q1 *= 800;
-			q2 *= 800;
-			e1 *= 800;
-			e2 *= 800;
+				//	sfw::drawLine(x1, y1, x2, y2, BLUE);
 
-			sfw::drawLine(q1, e1, q2, e2, CYAN);
+				//	float a1 = i / 100.f;
+				//	float b1 = speedInc(a1);
 
-			float j1 = i / 100.f;
-			float k1 = bounceFlip(j1);
+				//	float a2 = (i + 1) / 100.f;
+				//	float b2 = speedInc(a2);
 
-			float j2 = (i + 1) / 100.f;
-			float k2 = bounceFlip(j2);
+				//	a1 *= 800;
+				//	a2 *= 800;
+				//	b1 *= 800;
+				//	b2 *= 800;
 
-			j1 *= 800;
-			j2 *= 800;
-			k1 *= 800;
-			k2 *= 800;
+				//	sfw::drawLine(a1 - 10, b1, a2 - 10, b2, MAGENTA);
 
-			sfw::drawLine(j1, k1, j2, k2, WHITE);
+				//	float w1 = i / 100.f;
+				//	float z1 = speedDec(w1);
 
-			float o1 = i / 100.f;
-			float p1 = parabFlip(o1);
+				//	float w2 = (i + 1) / 100.f;
+				//	float z2 = speedDec(w2);
 
-			float o2 = (i + 1) / 100.f;
-			float p2 = parabFlip(o2);
+				//	w1 *= 800;
+				//	w2 *= 800;
+				//	z1 *= 800;
+				//	z2 *= 800;
 
-			o1 *= 800;
-			o2 *= 800;
-			p1 *= 800;
-			p2 *= 800;
+				//	sfw::drawLine(w1, z1, w2, z2, YELLOW);
 
-			sfw::drawLine(o1, p1, o2, p2, BLACK);*/
+				//	float s1 = i / 100.f;
+				//	float d1 = Hangle(s1);
+
+				//	float s2 = (i + 1) / 100.f;
+				//	float d2 = Hangle(s2);
+
+				//	s1 *= 800;
+				//	s2 *= 800;
+				//	d1 *= 800;
+				//	d2 *= 800;
+
+				//	sfw::drawLine(s1, d1, s2, d2, GREEN);
+
+				//	float q1 = i / 100.f;
+				//	float e1 = bounce(q1);
+
+				//	float q2 = (i + 1) / 100.f;
+				//	float e2 = bounce(q2);
+
+				//	q1 *= 800;
+				//	q2 *= 800;
+				//	e1 *= 800;
+				//	e2 *= 800;
+
+				//	sfw::drawLine(q1, e1, q2, e2, CYAN);
+
+				//	float j1 = i / 100.f;
+				//	float k1 = bounceFlip(j1);
+
+				//	float j2 = (i + 1) / 100.f;
+				//	float k2 = bounceFlip(j2);
+
+				//	j1 *= 800;
+				//	j2 *= 800;
+				//	k1 *= 800;
+				//	k2 *= 800;
+
+				//	sfw::drawLine(j1, k1, j2, k2, WHITE);
+
+				//	float o1 = i / 100.f;
+				//	float p1 = parabFlip(o1);
+
+				//	float o2 = (i + 1) / 100.f;
+				//	float p2 = parabFlip(o2);
+
+				//	o1 *= 800;
+				//	o2 *= 800;
+				//	p1 *= 800;
+				//	p2 *= 800;
+
+				//	sfw::drawLine(o1, p1, o2, p2, BLACK);*/
+				//}
+				//ang_vec += sfw::getDeltaTime();
+				//vec2 incident = fromAngle(ang_vec) * 40;
+				//float proj = dot(basis, normal(incident));
+
+				//sfw::drawLine(400, 300, 400 + basis.x, 300 + basis.y, RED);
+				//sfw::drawLine(400, 300, 400 + incident.x, 300 + incident.y, CYAN);
+				//sfw::drawLine(400, 300, 400 + proj, 300, GREEN);
+				////trans.debugDraw();
+			}
 		}
-		//ang_vec += sfw::getDeltaTime();
-		//vec2 incident = fromAngle(ang_vec) * 40;
-		//float proj = dot(basis, normal(incident));
-
-		//sfw::drawLine(400, 300, 400 + basis.x, 300 + basis.y, RED);
-		//sfw::drawLine(400, 300, 400 + incident.x, 300 + incident.y, CYAN);
-		//sfw::drawLine(400, 300, 400 + proj, 300, GREEN);
-		////trans.debugDraw();
 	}
 
 	sfw::termContext();
