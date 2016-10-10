@@ -20,7 +20,7 @@ void main()
 		end = { 600,600 },
 		mid = { 200,600 };
 
-	Transform playerTrans{400, 400};
+	Transform playerTrans{400, 400, 10, 10, 100};
 	Rigidbody playerRigid;
 	SpaceshipLocomotion loco;
 	SpaceshipController spaceshipcon;
