@@ -13,7 +13,7 @@ Rigidbody::Rigidbody()
 	velocity = vec2{ 0,0 };
 	angularVelocity = 0.0f;
 	angularAcceleration = 0.0f;
-	torque = 0
+	torque = 0;
 }
 
 void Rigidbody::addForce(const vec2 & a_force)
