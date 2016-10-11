@@ -160,3 +160,13 @@ vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const
 
 	return Lerp(cuBez1, cuBez2, alpha);
 }
+
+float vec2::operator[](unsigned idx) const
+{
+	return v[idx];
+}
+
+float & vec2::operator[](unsigned idx)
+{
+	return v[idx];
+}

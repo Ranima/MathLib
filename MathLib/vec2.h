@@ -1,8 +1,16 @@
 #pragma once
 
-struct vec2
+union vec2 
 {
-	float x, y;
+	float v[2];
+
+	struct
+	{
+		float x, y;
+	};
+
+	float  operator[](unsigned idx) const;
+	float &operator[](unsigned idx);
 };
 
 vec2 operator+(const vec2 &lhs, const vec2 &rhs);
@@ -46,3 +54,4 @@ vec2 HermiteSpline(const vec2 & start, const vec2 & s_tan,
 vec2 CardinalSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float tightness, float alpha);
 vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha);
 vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const vec2 & end, float alpha);
+
