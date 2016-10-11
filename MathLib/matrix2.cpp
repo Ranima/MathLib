@@ -71,6 +71,13 @@ float determinant(const mat2 & A)
 	return (A.m[0] * A.m[3]) - (A.m[1] * A.m[2]);
 }
 
+mat2 inverse(const mat2 & A)
+{
+	mat2 B = A;
+	B = { B.m[0] = A.m[3], B.m[1] = -A.m[1],
+		B.m[2] = -A.m[2], B.m[3] = A.m[0] };
+}
+
 float mat2::operator[](unsigned idx) const
 {
 	return m[idx];

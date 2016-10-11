@@ -45,6 +45,15 @@ mat3 operator*(const mat3 & A, const mat3 & B)
 		A.ma[8] * B.ma[8]};
 }
 
+mat3 operator/(const mat3 & A, const mat3 & B)
+{
+	return mat3{ A.ma[0] / B.ma[0], A.ma[1] / B.ma[1],
+		A.ma[2] / B.ma[2], A.ma[3] / B.ma[3],
+		A.ma[4] / B.ma[4], A.ma[5] / B.ma[5],
+		A.ma[6] / B.ma[6], A.ma[7] / B.ma[7],
+		A.ma[8] / B.ma[8] };
+}
+
 mat3 operator*(const mat3 & A, const float & flo)
 {
 	return mat3{ A.ma[0] * flo, A.ma[1] * flo,
@@ -54,6 +63,15 @@ mat3 operator*(const mat3 & A, const float & flo)
 		A.ma[8] * flo};
 }
 
+mat3 operator/(const mat3 & A, const float & flo)
+{
+	return mat3{ A.ma[0] / flo, A.ma[1] / flo,
+		A.ma[2] / flo, A.ma[3] / flo,
+		A.ma[4] / flo, A.ma[5] / flo,
+		A.ma[6] / flo, A.ma[7] / flo,
+		A.ma[8] / flo };
+}
+
 mat3 operator*(const float & flo, const mat3 & A)
 {
 	return mat3{ A.ma[0] * flo, A.ma[1] * flo,
@@ -61,6 +79,15 @@ mat3 operator*(const float & flo, const mat3 & A)
 		A.ma[4] * flo, A.ma[5] * flo,
 		A.ma[6] * flo, A.ma[7] * flo,
 		A.ma[8] * flo };
+}
+
+mat3 operator/(const float & flo, const mat3 & A)
+{
+	return mat3{ flo / A.ma[0], flo / A.ma[1],
+		flo / A.ma[2], flo / A.ma[3],
+		flo / A.ma[4], flo / A.ma[5],
+		flo / A.ma[6], flo / A.ma[7],
+		flo / A.ma[8] };
 }
 
 mat3 operator*(const mat3 & A, const vec3 & vec)
@@ -111,6 +138,11 @@ mat3 operator-(const mat3 & A)
 		A.ma[8] - A.ma[8]*2};
 }
 
+mat3 mat3identity()
+{
+	return mat3{1,0,0, 0,1,0, 0,0,1};
+}
+
 mat3 transpose(const mat3 & A)
 {
 	mat3 B = A;
@@ -131,7 +163,19 @@ float determinant(const mat3 & A)
 		b.m[3] = A.ma[2], b.m[4] = A.ma[8];
 	c.m[0] = A.ma[1], c.m[1] = A.ma[4],
 		c.m[3] = A.ma[2], c.m[4] = A.ma[5];
-	return (A.ma[0] * determinant(a)) -
-		(A.ma[3] * determinant(b)) +
-		(A.ma[6] * determinant(c));
+	return (A.ma[0] * determinant(a) -
+		A.ma[3] * determinant(b) +
+		A.ma[6] * determinant(c));
+}
+
+mat3 inverse(const mat3 &A)
+{
+	mat3 retval;
+
+	retval[0] = cross(A[1], A[2]);
+	retval[1] = cross(A[2], A[0]);
+	retval[2] = cross(A[0], A[1]);
+
+	return 1 / determinant(A) *
+		transpose(retval);
 }

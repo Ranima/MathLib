@@ -24,7 +24,7 @@ mat2 operator*(const float &flo, const mat2 &mat);
 
 mat2 transpose(const mat2 &A);
 float determinant(const mat2 &A);
-mat2 inverse();
+mat2 inverse(const mat2 &A);
 
 //transpose(mat2)
 //mat2 * mat2
