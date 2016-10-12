@@ -45,15 +45,6 @@ mat3 operator*(const mat3 & A, const mat3 & B)
 		A.ma[8] * B.ma[8]};
 }
 
-mat3 operator/(const mat3 & A, const mat3 & B)
-{
-	return mat3{ A.ma[0] / B.ma[0], A.ma[1] / B.ma[1],
-		A.ma[2] / B.ma[2], A.ma[3] / B.ma[3],
-		A.ma[4] / B.ma[4], A.ma[5] / B.ma[5],
-		A.ma[6] / B.ma[6], A.ma[7] / B.ma[7],
-		A.ma[8] / B.ma[8] };
-}
-
 mat3 operator*(const mat3 & A, const float & flo)
 {
 	return mat3{ A.ma[0] * flo, A.ma[1] * flo,
@@ -63,15 +54,6 @@ mat3 operator*(const mat3 & A, const float & flo)
 		A.ma[8] * flo};
 }
 
-mat3 operator/(const mat3 & A, const float & flo)
-{
-	return mat3{ A.ma[0] / flo, A.ma[1] / flo,
-		A.ma[2] / flo, A.ma[3] / flo,
-		A.ma[4] / flo, A.ma[5] / flo,
-		A.ma[6] / flo, A.ma[7] / flo,
-		A.ma[8] / flo };
-}
-
 mat3 operator*(const float & flo, const mat3 & A)
 {
 	return mat3{ A.ma[0] * flo, A.ma[1] * flo,
@@ -79,15 +61,6 @@ mat3 operator*(const float & flo, const mat3 & A)
 		A.ma[4] * flo, A.ma[5] * flo,
 		A.ma[6] * flo, A.ma[7] * flo,
 		A.ma[8] * flo };
-}
-
-mat3 operator/(const float & flo, const mat3 & A)
-{
-	return mat3{ flo / A.ma[0], flo / A.ma[1],
-		flo / A.ma[2], flo / A.ma[3],
-		flo / A.ma[4], flo / A.ma[5],
-		flo / A.ma[6], flo / A.ma[7],
-		flo / A.ma[8] };
 }
 
 mat3 operator*(const mat3 & A, const vec3 & vec)
@@ -178,4 +151,29 @@ mat3 inverse(const mat3 &A)
 
 	return 1 / determinant(A) *
 		transpose(retval);
+}
+
+mat3 scale(const vec2 & s)
+{
+	mat3 retval = mat3identity();
+	retval[0][0] = w;
+	retval[1][1] = h;
+	return retval;
+}
+
+mat3 translate(const vec2 & t)
+{
+	mat3 retval = mat3identity();
+	retval[2][0] = x;
+	retval[2][1] = y;
+	return retval;
+}
+
+mat3 rotation(float a)
+{
+	vec2 d = fromAngle(a);
+	mat3 retval = mat3identity();
+	retval[0].xy = d;
+	retval[1].xy = -perp(d);
+	return retval;
 }

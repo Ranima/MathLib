@@ -17,11 +17,8 @@ bool operator==(const mat3 &A, const mat3 &B);
 bool operator!=(const mat3 &A, const mat3 &B);
 
 mat3 operator*(const mat3 &A, const mat3 &B);
-mat3 operator/(const mat3 &A, const mat3 &B);
 mat3 operator*(const mat3 &A, const float &flo);
-mat3 operator/(const mat3 &A, const float &flo);
 mat3 operator*(const float &flo, const mat3 &A);
-mat3 operator/(const float &flo, const mat3 &A);
 mat3 operator*(const mat3 &A, const vec3 &vec);
 mat3 operator+(const mat3 &A, const mat3 &B);
 mat3 operator-(const mat3 &A, const mat3 &B);
@@ -31,6 +28,10 @@ mat3 mat3identity();
 mat3 transpose(const mat3 &A);
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
+
+mat3 scale(const vec2 &s);
+mat3 translate(const vec2 &t);
+mat3 rotation(float a);
 
 //transpose(mat3)
 //mat3 * mat3
