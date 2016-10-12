@@ -15,12 +15,22 @@ void main()
 	//Useing A to hide junk for the moment
 	bool A = false;
 
+	vec2 s{ 2,1 };
+	vec2 t{4,3};
+
+	mat3 S = Scale(s);
+	mat3 T = translate(t);
+	mat3 R = rotation(deg2rad(90));
+
+	mat3 RES = { 0,-1,0, 2,0,0, 4,3,1 };
+
+
 	//!!!Project start!!!
 	vec2 start = { 200,200 },
 		end = { 600,600 },
 		mid = { 200,600 };
 
-	Transform playerTrans{400, 400, 10, 10, 100};
+	Transform playerTrans(400, 400, 10, 10, 100);
 	Rigidbody playerRigid;
 	SpaceshipLocomotion loco;
 	SpaceshipController spaceshipcon;
@@ -66,15 +76,15 @@ void main()
 		if (sfw::getKey('Q')) playerRigid.angularAcceleration += 1.0f;
 		if (sfw::getKey('E')) playerRigid.angularAcceleration -= 1.0f;*/
 
-		if (playerTrans.position.x > SCREEN_WIDTH)
-			playerTrans.position.x = 0.0f;
-		else if (playerTrans.position.x < 0.0f)
-			playerTrans.position.x = SCREEN_WIDTH;
+		if (playerTrans.m_position.x > SCREEN_WIDTH)
+			playerTrans.m_position.x = 0.0f;
+		else if (playerTrans.m_position.x < 0.0f)
+			playerTrans.m_position.x = SCREEN_WIDTH;
 
-		if (playerTrans.position.y > SCREEN_WIDTH)
-			playerTrans.position.y = 0.0f;
-		else if (playerTrans.position.y < 0.0f)
-			playerTrans.position.y = SCREEN_WIDTH;
+		if (playerTrans.m_position.y > SCREEN_WIDTH)
+			playerTrans.m_position.y = 0.0f;
+		else if (playerTrans.m_position.y < 0.0f)
+			playerTrans.m_position.y = SCREEN_WIDTH;
 
 		spaceshipcon.update(loco);
 		loco.update(playerRigid, playerTrans);

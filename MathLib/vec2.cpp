@@ -83,7 +83,7 @@ float angleBetween(const vec2 & rhs, const vec2 & lhs)
 
 vec2 perp(const vec2 & v)
 {
-	return vec2{ -v.x,v.y };
+	return vec2{ v.y, -v.x };
 }
 
 float angle(const vec2 & v)

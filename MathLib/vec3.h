@@ -1,5 +1,7 @@
 #pragma once
 
+#include "vec2.h"
+
 union vec3
 {
 	float v[3];

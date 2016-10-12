@@ -1,18 +1,18 @@
 #include "matrix3.h"
 
-float mat3::operator[](unsigned idx) const
+vec3 mat3::operator[](unsigned idx) const
 {
-	return ma[idx];
+	return ve[idx];
 }
 
-float & mat3::operator[](unsigned idx)
+vec3 & mat3::operator[](unsigned idx)
 {
-	return ma[idx];
+	return ve[idx];
 }
 
 bool operator==(const mat3 & A, const mat3 & B)
 {
-	fequals(A.ma[0], B.ma[0]) &&
+	return fequals(A.ma[0], B.ma[0]) &&
 		fequals(A.ma[1], B.ma[1]) &&
 		fequals(A.ma[2], B.ma[2]) &&
 		fequals(A.ma[3], B.ma[3]) &&
@@ -38,11 +38,19 @@ bool operator!=(const mat3 & A, const mat3 & B)
 
 mat3 operator*(const mat3 & A, const mat3 & B)
 {
-	return mat3{ A.ma[0] * B.ma[0], A.ma[1] * B.ma[1],
-		A.ma[2] * B.ma[2], A.ma[3] * B.ma[3],
-		A.ma[4] * B.ma[4], A.ma[5] * B.ma[5],
-		A.ma[6] * B.ma[6], A.ma[7] * B.ma[7],
-		A.ma[8] * B.ma[8]};
+	mat3 retval;
+	mat3 At = transpose(A);
+
+	for (int i = 0; i < 3; ++i)
+		for (int j = 0; j < 3; ++j)
+			retval[i][j] = dot(At[j], B[i]);
+
+	return retval;
+	//return mat3{ A.ma[0] * B.ma[0], A.ma[1] * B.ma[1],
+	//	A.ma[2] * B.ma[2], A.ma[3] * B.ma[3],
+	//	A.ma[4] * B.ma[4], A.ma[5] * B.ma[5],
+	//	A.ma[6] * B.ma[6], A.ma[7] * B.ma[7],
+	//	A.ma[8] * B.ma[8]};
 }
 
 mat3 operator*(const mat3 & A, const float & flo)
@@ -63,13 +71,22 @@ mat3 operator*(const float & flo, const mat3 & A)
 		A.ma[8] * flo };
 }
 
-mat3 operator*(const mat3 & A, const vec3 & vec)
+vec3 operator*(const mat3 & A, const vec3 & vec)
 {
-	return mat3{ A.ma[0] * vec.x, A.ma[1] * vec.y,
-		A.ma[2] * vec.z, A.ma[3] * vec.x,
-		A.ma[4] * vec.y, A.ma[5] * vec.z,
-		A.ma[6] * vec.y, A.ma[7] * vec.z,
-		A.ma[8] * vec.y};
+	// x = [0, 3, 6] dot vec
+	// y = [1, 4, 7] dot vec
+	// z = [2, 5, 8] dot vec
+	return vec3
+	{
+		A.ma[0] * vec.x + A.ma[3] * vec.y + A.ma[6] * vec.z,
+		A.ma[1] * vec.x + A.ma[4] * vec.y + A.ma[6] * vec.z,
+		A.ma[2] * vec.x + A.ma[5] * vec.y + A.ma[7] * vec.z
+	};
+	//{ A.ma[0] * vec.x, A.ma[1] * vec.y,
+	//	A.ma[2] * vec.z, A.ma[3] * vec.x,
+	//	A.ma[4] * vec.y, A.ma[5] * vec.z,
+	//	A.ma[6] * vec.y, A.ma[7] * vec.z,
+	//	A.ma[8] * vec.y};
 }
 
 mat3 operator+(const mat3 & A, const mat3 & B)
@@ -119,9 +136,9 @@ mat3 mat3identity()
 mat3 transpose(const mat3 & A)
 {
 	mat3 B = A;
-	B = { B.ma[0], B.ma[1] = A.ma[3], B.ma[2] = A.ma[6],
-		B.ma[3] = A.ma[1], B.ma[4], B.ma[5] = A.ma[7],
-		B.ma[6] = A.ma[2], B.ma[7] = A.ma[5], B.ma[8]};
+	B = { A.ma[0], A.ma[3], A.ma[6],
+		  A.ma[1], A.ma[4], A.ma[7],
+		  A.ma[2], A.ma[5], A.ma[8]};
 	return B;
 }
 
@@ -145,27 +162,27 @@ mat3 inverse(const mat3 &A)
 {
 	mat3 retval;
 
-	retval[0] = cross(A[1], A[2]);
-	retval[1] = cross(A[2], A[0]);
-	retval[2] = cross(A[0], A[1]);
+	retval.ve[0] = cross(A.ve[1], A.ve[2]);
+	retval.ve[1] = cross(A.ve[2], A.ve[0]);
+	retval.ve[2] = cross(A.ve[0], A.ve[1]);
 
 	return 1 / determinant(A) *
 		transpose(retval);
 }
 
-mat3 scale(const vec2 & s)
+mat3 Scale(const vec2 & s)
 {
 	mat3 retval = mat3identity();
-	retval[0][0] = w;
-	retval[1][1] = h;
+	retval.mama[0][0] = s.x;
+	retval.mama[1][1] = s.y;
 	return retval;
 }
 
 mat3 translate(const vec2 & t)
 {
 	mat3 retval = mat3identity();
-	retval[2][0] = x;
-	retval[2][1] = y;
+	retval.mama[2][0] = t.x;
+	retval.mama[2][1] = t.y;
 	return retval;
 }
 
@@ -173,7 +190,10 @@ mat3 rotation(float a)
 {
 	vec2 d = fromAngle(a);
 	mat3 retval = mat3identity();
+	
 	retval[0].xy = d;
 	retval[1].xy = -perp(d);
+
 	return retval;
 }
+//"what, you egg!" (stabs him)

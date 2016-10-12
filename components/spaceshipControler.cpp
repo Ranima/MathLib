@@ -2,8 +2,8 @@
 
 #include "sfwdraw.h"
 
-SpaceshipController::SpaceshipController(unsigned a_CTR_LEFT = 'A', unsigned a_CTR_RIGHT = 'D'
-	, unsigned a_CTR_UP = 'W', unsigned a_CTR_DOWN = 'S', unsigned a_CTR_BREAK = ' ')
+SpaceshipController::SpaceshipController(unsigned a_CTR_LEFT, unsigned a_CTR_RIGHT
+	, unsigned a_CTR_UP, unsigned a_CTR_DOWN, unsigned a_CTR_BREAK)
 {
 	CTR_LEFT = a_CTR_LEFT;
 	CTR_RIGHT = a_CTR_RIGHT;
