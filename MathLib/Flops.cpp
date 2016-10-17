@@ -5,12 +5,9 @@
 
 bool fequals(float lhs, float rhs)
 {
-	float holder;
-	if (lhs > rhs)
-		holder = lhs - rhs;
-	if (lhs < rhs)
-		holder = rhs - lhs;
-	if (holder < 0.0000001f)
+	float holder = abs(lhs - rhs);
+
+	if (holder < 0.0001f)
 		return true;
 	else
 		return false;

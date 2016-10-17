@@ -79,8 +79,8 @@ vec3 operator*(const mat3 & A, const vec3 & vec)
 	return vec3
 	{
 		A.ma[0] * vec.x + A.ma[3] * vec.y + A.ma[6] * vec.z,
-		A.ma[1] * vec.x + A.ma[4] * vec.y + A.ma[6] * vec.z,
-		A.ma[2] * vec.x + A.ma[5] * vec.y + A.ma[7] * vec.z
+		A.ma[1] * vec.x + A.ma[4] * vec.y + A.ma[7] * vec.z,
+		A.ma[2] * vec.x + A.ma[5] * vec.y + A.ma[8] * vec.z
 	};
 	//{ A.ma[0] * vec.x, A.ma[1] * vec.y,
 	//	A.ma[2] * vec.z, A.ma[3] * vec.x,
@@ -183,6 +183,14 @@ mat3 translate(const vec2 & t)
 	mat3 retval = mat3identity();
 	retval.mama[2][0] = t.x;
 	retval.mama[2][1] = t.y;
+	return retval;
+}
+
+mat3 translate(const float x, const float y)
+{
+	mat3 retval = mat3identity();
+	retval.mama[2][0] = x;
+	retval.mama[2][1] = y;
 	return retval;
 }
 

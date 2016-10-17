@@ -11,8 +11,8 @@ public:
 	vec2 m_scale;
 	float m_facing;
 
-	Transform(float x = 0, float y = 0,
-		float w = 1, float h = 1, float a = 0);
+	Transform(float xPos = 0, float yPos = 0,
+		float xScale = 1, float yScale = 1, float facing = 0);
 
 	//vec2 position;
 	//vec2 scale;

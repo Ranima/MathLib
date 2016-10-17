@@ -5,6 +5,7 @@
 #include "Rigidbody.h"
 #include "SpaceshipLoco.h"
 #include "spaceshipControler.h"
+#include <cstdio>
 
 void main()
 {
@@ -15,22 +16,20 @@ void main()
 	//Useing A to hide junk for the moment
 	bool A = false;
 
-	vec2 s{ 2,1 };
+	/*vec2 s{ 2,1 };
 	vec2 t{4,3};
-
-	mat3 S = Scale(s);
+*/
+	/*mat3 S = Scale(s);
 	mat3 T = translate(t);
-	mat3 R = rotation(deg2rad(90));
+	mat3 R = rotation(deg2rad(90));*/
 
-	mat3 RES = { 0,-1,0, 2,0,0, 4,3,1 };
+	//mat3 RES = { 0,-1,0, 2,0,0, 4,3,1 };
 
-
-	//!!!Project start!!!
 	vec2 start = { 200,200 },
 		end = { 600,600 },
 		mid = { 200,600 };
 
-	Transform playerTrans(400, 400, 10, 10, 100);
+	Transform playerTrans(0, 0, 10, 10, 0);
 	Rigidbody playerRigid;
 	SpaceshipLocomotion loco;
 	SpaceshipController spaceshipcon;
@@ -65,8 +64,6 @@ void main()
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
-
-
 		
 		/*if (sfw::getKey('W')) playerRigid.acceleration.y += 10.0f;
 		if (sfw::getKey('S')) playerRigid.acceleration.y -= 10.0f;

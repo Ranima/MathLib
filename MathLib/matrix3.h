@@ -31,6 +31,7 @@ mat3 inverse(const mat3 &A);
 
 mat3 Scale(const vec2 &s);
 mat3 translate(const vec2 &t);
+mat3 translate(const float x, const float y);
 mat3 rotation(float a);
 
 //transpose(mat3)

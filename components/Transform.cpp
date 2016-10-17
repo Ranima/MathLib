@@ -2,15 +2,16 @@
 #include "sfwdraw.h"
 
 
-Transform::Transform(float x, float y, float w, float h, float a)
+Transform::Transform(float xPos, float yPos, float xScale, float yScale,
+	float facing)
 {
-	m_position.x = x;
-	m_position.y = y;
+	m_position.x = xPos;
+	m_position.y = yPos;
 
-	m_scale.x = w;
-	m_scale.y = h;
+	m_scale.x = xScale;
+	m_scale.y = yScale;
 
-	m_facing = a;
+	m_facing = facing;
 }
 
 vec2 Transform::getUp() const
@@ -46,8 +47,10 @@ void Transform::debugDraw(const mat3 &T) const
 
 
 
-	vec3 right = pos+L * vec3{ 1,0,0 };
-	vec3 up    = pos + L * vec3{ 0,1,0 };
+	vec3 right = L * vec3{ 10,0,0 };
+	vec3 up    = L * vec3{ 0,10,0 };
+
+	
 
 	/*vec2 dirEnd = m_position + getDirection() * m_scale.x * 4;
 	vec2 upEnd = m_position + getUp() * m_scale.y * 4;*/
