@@ -29,7 +29,17 @@ void main()
 		end = { 600,600 },
 		mid = { 200,600 };
 
-	Transform playerTrans(0, 0, 10, 10, 0);
+	Transform playerTrans(400, 400, 10, 10, 0);
+	Transform ST1(0, -10);
+	Transform ST2(0, -10);
+	SpaceshipController ST1con{'Q','E'};
+	SpaceshipController ST2con{'Z','C'};
+	SpaceshipLocomotion ST1loc;
+	SpaceshipLocomotion ST2loc;
+
+	ST2.m_parent = &ST1;
+	ST1.m_parent = &playerTrans;
+
 	Rigidbody playerRigid;
 	SpaceshipLocomotion loco;
 	SpaceshipController spaceshipcon;
@@ -225,6 +235,10 @@ void main()
 				////trans.debugDraw();
 			}
 		}
+		ST1.m_facing = (ST1.m_facing + playerTrans.m_facing)*deltaTime * 4;
+		ST2.m_facing = (ST2.m_facing + playerTrans.m_facing)*deltaTime * 4;
+		ST1.debugDraw();
+		ST2.debugDraw();
 	}
 
 	sfw::termContext();

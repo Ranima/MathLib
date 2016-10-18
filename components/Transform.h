@@ -11,6 +11,8 @@ public:
 	vec2 m_scale;
 	float m_facing;
 
+	Transform *m_parent;
+
 	Transform(float xPos = 0, float yPos = 0,
 		float xScale = 1, float yScale = 1, float facing = 0);
 
@@ -22,7 +24,7 @@ public:
 	vec2 getDirection() const;
 	void setDirection(const vec2 &dir);
 
-
+	mat3 getGlobalTransform() const;
 	mat3 getLocalTransform() const;
 
 	void debugDraw(const mat3 &T = mat3identity()) const;

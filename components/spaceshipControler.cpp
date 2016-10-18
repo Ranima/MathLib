@@ -19,12 +19,12 @@ void SpaceshipController::update(SpaceshipLocomotion &loco)
 	hInput += sfw::getKey(CTR_RIGHT);
 
 	float vInput = 0.0f;
-	vInput -= sfw::getKey(CTR_UP);
-	vInput += sfw::getKey(CTR_DOWN);
+	vInput += sfw::getKey(CTR_UP);
+	vInput -= sfw::getKey(CTR_DOWN);
 
 	float bInput = sfw::getKey(CTR_BREAK);
 
 	loco.doStop(bInput);
-	loco.doTurn(hInput);
+	loco.doTurn(-hInput);
 	loco.doThrust(vInput);
 }
