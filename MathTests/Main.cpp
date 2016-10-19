@@ -53,10 +53,22 @@ int main()
 	assert((vec2{ 1,1 } - vec2{  1,0 } == vec2{ 0,1 }));
 
 	vec2 var = { 4,0 };
-	var += vec2{ -3,1 };
-	assert((var == vec2{ 1,1 }));
+	assert(((var += vec2{ -3,1 }) == vec2{1,1}));
+	var = { 4,0 };
+	assert(((var -= vec2{ 3,-1 }) == vec2{ 1,1 }));
+	var = { 4,0 };
+	assert(((var *= vec2{ 3,-1 }) == vec2{ 12,0 }));
+	var = { 4,2 };
+	assert(((var /= vec2{ 2,-2 }) == vec2{ 2,-1 }));
+
+	assert((dot(vec2{ 3,4 }, vec2{ 5,6 }) == 39.f));
+	assert((fequals(angleBetween(vec2{ 0,1 }, vec2{ 1,0 }), deg2rad(90))));
+	assert((fromAngle(0) == vec2{ 1,0 }));
+
 
 	// vec3
+
+
 	// mat2
 	// mat3
 	// flops
@@ -76,6 +88,12 @@ int main()
 	// -8.82
 	// 1
 
+	mat3 tank;
+	mat3 turret;
+
+	tank = translate(vec2{18,88});
+	
+
 	getchar();
 	return 0;
-}
+};
