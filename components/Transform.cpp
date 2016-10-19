@@ -29,6 +29,26 @@ void Transform::setDirection(const vec2 & dir)
 	m_facing = angle(dir);
 }
 
+vec2 Transform::getGlobalPosition() const
+{
+	return getGlobalTransform()[2].xy;
+}
+
+vec2 Transform::getGlobalright() const
+{
+	return getGlobalTransform()[0].xy;
+}
+
+vec2 Transform::getGlobalUp() const
+{
+	return getGlobalTransform()[1].xy;
+}
+
+float Transform::getGlobalAngle() const
+{
+	return angle(getGlobalright());
+}
+
 mat3 Transform::getGlobalTransform() const
 {
 	if (m_parent == nullptr)
@@ -76,7 +96,9 @@ void Transform::debugDraw(const mat3 &T) const
 	sfw::drawLine(pos.x, pos.y, up.x, up.y, GREEN);
 	sfw::drawLine(sgp.x, sgp.y, pos.x, pos.y, BLUE);
 
-	sfw::drawCircle(pos.x, pos.y, 12, 12, 0x888888FF);
+	-(4U);
+
+	sfw::drawCircle(pos.x, pos.y, 12, 12U, 0x888888FF);
 	//sfw::drawCircle(up.x, up.y, 12, 12, 0x888888FF);
 
 	//sfw::drawLine(m_position.x, m_position.y, dirEnd.x, dirEnd.y, RED);

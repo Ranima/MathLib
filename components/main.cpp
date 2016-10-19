@@ -6,6 +6,8 @@
 #include "SpaceshipLoco.h"
 #include "spaceshipControler.h"
 #include <cstdio>
+#include "PlanetaryMotor.h"
+#include "PlantearyRenderer.h"
 
 void main()
 {
@@ -29,10 +31,9 @@ void main()
 		end = { 600,600 },
 		mid = { 200,600 };
 
-	vec2 waypoint[] = { {12, -8}, {15,18},{5,8},{-22,-5},{4,-2},{-6,9},{18,88},{-22,-90}};
+	//vec2 waypoint[] = { {12, -8}, {15,18},{5,8},{-22,-5},{4,-2},{-6,9},{18,88},{-22,-90}};
 
-	/*Transform playerTrans(400, 400, 10, 10, 0);
-	Transform ST1(0, -5);
+	/*Transform ST1(0, -5);
 	Transform ST2(0, -5);
 	Transform ST3(0, -5);
 	Transform ST4(0, -5);
@@ -49,19 +50,64 @@ void main()
 	ST4.m_parent = &ST3;
 	ST5.m_parent = &ST4;
 */
+
+	//player
+	Transform playerTrans(400, 400, 10, 10, 0);
 	Rigidbody playerRigid;
 	SpaceshipLocomotion loco;
 	SpaceshipController spaceshipcon;
 	playerRigid.velocity = vec2{ 0,0 };
 
-	
+	//Sun
+	Transform sunTrans;
+	sunTrans.m_position = vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+	Rigidbody sunRbody;
+	PlanetaryMotor sunMotor;
+	sunMotor.m_rotationspeed = 5;
+	PlanetaryRenderer sunRenderer(YELLOW, 100);
+
+	//Planet
+	Transform planet;
+	planet.m_position = vec2{ 150, 0 };
+	planet.m_parent = &sunTrans;
+	Rigidbody plan1RB;
+	PlanetaryMotor planetmotor;
+	planetmotor.m_rotationspeed = 7;
+	PlanetaryRenderer planetRenderer(GREEN, 20);
+
+	//Moon
+	Transform moon;
+	moon.m_position = vec2{ 50,0 };
+	moon.m_parent = &planet;
+	Rigidbody moonRB;
+	PlanetaryMotor moonMotor;
+	moonMotor.m_rotationspeed = 12;
+	PlanetaryRenderer moonRenderer(WHITE, 7);
+
+	Transform cameraTransform;
+
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
-		for (int i = 0; i <= 7; i++)
-		{
+		
 
-		}
+
+		if (playerTrans.m_position.x > SCREEN_WIDTH)
+			playerTrans.m_position.x = 0.0f;
+		else if (playerTrans.m_position.x < 0.0f)
+			playerTrans.m_position.x = SCREEN_WIDTH;
+
+		if (playerTrans.m_position.y > SCREEN_WIDTH)
+			playerTrans.m_position.y = 0.0f;
+		else if (playerTrans.m_position.y < 0.0f)
+			playerTrans.m_position.y = SCREEN_WIDTH;
+
+		spaceshipcon.update(loco);
+		loco.update(playerRigid, playerTrans);
+		playerRigid.integrate(playerTrans, deltaTime);
+
+		playerTrans.debugDraw();
+		playerRigid.debugDraw(playerTrans);
 	}
 
 	sfw::termContext();

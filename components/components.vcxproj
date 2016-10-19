@@ -119,6 +119,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlanetaryMotor.cpp" />
+    <ClCompile Include="PlantearyRenderer.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="spaceshipControler.cpp" />
     <ClCompile Include="SpaceshipLoco.cpp" />
@@ -126,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlanetaryMotor.h" />
+    <ClInclude Include="PlantearyRenderer.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="sfwdraw.h" />
     <ClInclude Include="spaceshipControler.h" />

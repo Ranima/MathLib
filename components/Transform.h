@@ -24,6 +24,11 @@ public:
 	vec2 getDirection() const;
 	void setDirection(const vec2 &dir);
 
+	vec2 getGlobalPosition()	const;
+	vec2 getGlobalright()		const;
+	vec2 getGlobalUp()			const;
+	float getGlobalAngle()		const;
+
 	mat3 getGlobalTransform() const;
 	mat3 getLocalTransform() const;
 
