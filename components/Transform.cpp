@@ -59,7 +59,7 @@ mat3 Transform::getGlobalTransform() const
 
 mat3 Transform::getLocalTransform() const
 {
-	mat3 S = Scale(m_scale);
+	mat3 S = scale(m_scale);
 	mat3 T = translate(m_position);
 	mat3 R = rotation(m_facing);
 	return T*S*R;
@@ -95,8 +95,6 @@ void Transform::debugDraw(const mat3 &T) const
 	sfw::drawLine(pos.x, pos.y, right.x, right.y, RED);
 	sfw::drawLine(pos.x, pos.y, up.x, up.y, GREEN);
 	sfw::drawLine(sgp.x, sgp.y, pos.x, pos.y, BLUE);
-
-	-(4U);
 
 	sfw::drawCircle(pos.x, pos.y, 12, 12U, 0x888888FF);
 	//sfw::drawCircle(up.x, up.y, 12, 12, 0x888888FF);

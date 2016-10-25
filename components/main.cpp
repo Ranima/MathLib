@@ -5,7 +5,7 @@
 #include "Rigidbody.h"
 #include "SpaceshipLoco.h"
 #include "spaceshipControler.h"
-#include <cstdio>
+#include "SpaceshipRenderer.h"
 #include "PlanetaryMotor.h"
 #include "PlantearyRenderer.h"
 
@@ -92,7 +92,18 @@ void main()
 		
 
 
-		if (playerTrans.m_position.x > SCREEN_WIDTH)
+		cameraTransform.m_position = 
+			lerp(cameraTransform.m_position,
+			(playerTrans.getGlobalPosition()
+				+ sunTrans.getGlobalPosition()) / 2,
+				sfw::getDeltaTime() * 10);
+
+		mat3 proj = translate(600, 600) * scale(2, 2);
+		mat3 view = inverse(cameraTransform.getGlobalTransform());
+
+		mat3 camera = proj * view;
+
+		/*if (playerTrans.m_position.x > SCREEN_WIDTH)
 			playerTrans.m_position.x = 0.0f;
 		else if (playerTrans.m_position.x < 0.0f)
 			playerTrans.m_position.x = SCREEN_WIDTH;
@@ -100,14 +111,14 @@ void main()
 		if (playerTrans.m_position.y > SCREEN_WIDTH)
 			playerTrans.m_position.y = 0.0f;
 		else if (playerTrans.m_position.y < 0.0f)
-			playerTrans.m_position.y = SCREEN_WIDTH;
+			playerTrans.m_position.y = SCREEN_WIDTH;*/
 
 		spaceshipcon.update(loco);
 		loco.update(playerRigid, playerTrans);
 		playerRigid.integrate(playerTrans, deltaTime);
 
-		playerTrans.debugDraw();
-		playerRigid.debugDraw(playerTrans);
+		playerTrans.debugDraw(camera);
+		playerRigid.debugDraw(camera, playerTrans);
 	}
 
 	sfw::termContext();

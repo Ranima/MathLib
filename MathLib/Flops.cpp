@@ -65,7 +65,7 @@ float parabFlip(float x)
 
 float lerp(float start, float end, float alpha)
 {
-	return start + alpha * (end - start);
+	return (1 - alpha)*start + (alpha)*end;
 }
 
 float quadBezier(float start, float mid, float end, float alpha)

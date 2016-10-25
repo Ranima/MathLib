@@ -170,11 +170,19 @@ mat3 inverse(const mat3 &A)
 		transpose(retval);
 }
 
-mat3 Scale(const vec2 & s)
+mat3 scale(float w, float h)
 {
 	mat3 retval = mat3identity();
-	retval.mama[0][0] = s.x;
-	retval.mama[1][1] = s.y;
+	retval.mama[0][0] = w;
+	retval.mama[1][1] = h;
+	return retval;
+}
+
+mat3 scale(vec2 & v)
+{
+	mat3 retval = mat3identity();
+	retval.mama[0][0] = v.x;
+	retval.mama[1][1] = v.y;
 	return retval;
 }
 
@@ -203,5 +211,9 @@ mat3 rotation(float a)
 	retval[1].xy = -perp(d);
 
 	return retval;
+}
+vec2 amul(const mat3 & A, const vec2 & V)
+{
+	return (A * vec3{ V.x, V.y, 1 }).xy;
 }
 //"what, you egg!" (stabs him)

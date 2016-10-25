@@ -111,16 +111,16 @@ float magnitude(const vec2 &v)
 	return sqrt(v.x*v.x + v.y*v.y);
 }
 
-vec2 Lerp(const vec2 & start, const vec2 & end, float alpha)
+vec2 lerp(const vec2 & start, const vec2 & end, float alpha)
 {
 	return start + alpha * (end - start);
 }
 
 vec2 QuadBezier(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha)
 {
-	vec2 mid1 = Lerp(start, mid, alpha);
-	vec2 mid2 = Lerp(mid, end, alpha);
-	return Lerp(mid1, mid2, alpha);
+	vec2 mid1 = lerp(start, mid, alpha);
+	vec2 mid2 = lerp(mid, end, alpha);
+	return lerp(mid1, mid2, alpha);
 }
 
 vec2 HermiteSpline(const vec2 & start, const vec2 & s_tan, const vec2 & end, const vec2 & e_tan, float alpha)
@@ -151,14 +151,14 @@ vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float 
 
 vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const vec2 & end, float alpha)
 {
-	vec2 mid1 = Lerp(start, midA, alpha);
-	vec2 mid2 = Lerp(midA, midB, alpha);
-	vec2 mid3 = Lerp(midB, end, alpha);
+	vec2 mid1 = lerp(start, midA, alpha);
+	vec2 mid2 = lerp(midA, midB, alpha);
+	vec2 mid3 = lerp(midB, end, alpha);
 
-	vec2 cuBez1 = Lerp(mid1, mid2, alpha);
-	vec2 cuBez2 = Lerp(mid2, mid3, alpha);
+	vec2 cuBez1 = lerp(mid1, mid2, alpha);
+	vec2 cuBez2 = lerp(mid2, mid3, alpha);
 
-	return Lerp(cuBez1, cuBez2, alpha);
+	return lerp(cuBez1, cuBez2, alpha);
 }
 
 float vec2::operator[](unsigned idx) const

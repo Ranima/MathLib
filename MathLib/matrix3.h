@@ -29,10 +29,12 @@ mat3 transpose(const mat3 &A);
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
 
-mat3 Scale(const vec2 &s);
+mat3 scale(float w, float h);
+mat3 scale(const vec2 &v);
 mat3 translate(const vec2 &t);
 mat3 translate(const float x, const float y);
 mat3 rotation(float a);
+vec2 amul(const mat3 &A, const vec2 &V);
 
 //transpose(mat3)
 //mat3 * mat3
