@@ -178,7 +178,7 @@ mat3 scale(float w, float h)
 	return retval;
 }
 
-mat3 scale(vec2 & v)
+mat3 scale(const vec2 & v)
 {
 	mat3 retval = mat3identity();
 	retval.mama[0][0] = v.x;

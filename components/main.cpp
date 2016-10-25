@@ -54,8 +54,9 @@ void main()
 	//player
 	Transform playerTrans(400, 400, 10, 10, 0);
 	Rigidbody playerRigid;
-	SpaceshipLocomotion loco;
-	SpaceshipController spaceshipcon;
+	SpaceshipLocomotion playerLoco;
+	SpaceshipController playerCon;
+	SpaceshipRenderer playerRender;
 	playerRigid.velocity = vec2{ 0,0 };
 
 	//Sun
@@ -90,7 +91,18 @@ void main()
 	{
 		float deltaTime = sfw::getDeltaTime();
 		
+		playerCon.update(playerLoco);
+		playerLoco.update(playerRigid, playerTrans);
+		playerRigid.integrate(playerTrans, deltaTime);
 
+		sunMotor.update(sunRbody);
+		planetmotor.update(plan1RB);
+		moonMotor.update(moonRB);
+
+		playerRigid.integrate(playerTrans, deltaTime);
+		moonRB.integrate(moon, deltaTime);
+		plan1RB.integrate(planet, deltaTime);
+		sunRbody.integrate(sunTrans, deltaTime);
 
 		cameraTransform.m_position = 
 			lerp(cameraTransform.m_position,
@@ -113,12 +125,23 @@ void main()
 		else if (playerTrans.m_position.y < 0.0f)
 			playerTrans.m_position.y = SCREEN_WIDTH;*/
 
-		spaceshipcon.update(loco);
-		loco.update(playerRigid, playerTrans);
-		playerRigid.integrate(playerTrans, deltaTime);
-
 		playerTrans.debugDraw(camera);
+		sunTrans.debugDraw(camera);
+		planet.debugDraw(camera);
+		moon.debugDraw(camera);
+		cameraTransform.debugDraw(camera);
+
+		/*playerCon.update(playerLoco);
+		playerLoco.update(playerRigid, playerTrans);
+		playerRigid.integrate(playerTrans, deltaTime);*/
+
 		playerRigid.debugDraw(camera, playerTrans);
+
+		sunRenderer.draw(camera, sunTrans);
+		planetRenderer.draw(camera, planet);
+		moonRenderer.draw(camera, moon);
+
+		playerRender.draw(camera, playerTrans);
 	}
 
 	sfw::termContext();
