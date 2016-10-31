@@ -92,7 +92,9 @@ int main()
 	mat3 turret;
 
 	tank = translate(vec2{18,88});
-	
+
+	assert(fequals(determinant(mat2{ 1,1,20,15 }), -5.f));
+	assert(fequals(determinant(mat3{ 1,0,0, 0,1,0, 400,400,1 }), 1.f));
 
 	getchar();
 	return 0;

@@ -11,7 +11,7 @@
 
 void main()
 {
-	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
+	float SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 	//Transform trans;
 	float steps = 100;
@@ -52,7 +52,7 @@ void main()
 */
 
 	//player
-	Transform playerTrans(400, 400, 10, 10, 0);
+	Transform playerTrans(400, 400, 1, 1, 0);
 	Rigidbody playerRigid;
 	SpaceshipLocomotion playerLoco;
 	SpaceshipController playerCon;
@@ -87,13 +87,13 @@ void main()
 
 	Transform cameraTransform;
 
+
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
 		
 		playerCon.update(playerLoco);
 		playerLoco.update(playerRigid, playerTrans);
-		playerRigid.integrate(playerTrans, deltaTime);
 
 		sunMotor.update(sunRbody);
 		planetmotor.update(plan1RB);
@@ -107,10 +107,11 @@ void main()
 		cameraTransform.m_position = 
 			lerp(cameraTransform.m_position,
 			(playerTrans.getGlobalPosition()
-				+ sunTrans.getGlobalPosition()) / 2,
-				sfw::getDeltaTime() * 10);
+				) / 1,
+//				+ sunTrans.getGlobalPosition()) / 2,
+				1);
 
-		mat3 proj = translate(600, 600) * scale(2, 2);
+		mat3 proj = translate(400, 400) * scale(1, 1);
 		mat3 view = inverse(cameraTransform.getGlobalTransform());
 
 		mat3 camera = proj * view;

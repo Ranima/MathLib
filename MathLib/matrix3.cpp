@@ -147,12 +147,22 @@ float determinant(const mat3 & A)
 	mat2 a;
 	mat2 b;
 	mat2 c;
-	a.m[0] = A.ma[4], a.m[1] = A.ma[7],
-		a.m[3] = A.ma[5], a.m[4] = A.ma[8];
-	b.m[0] = A.ma[1], b.m[1] = A.ma[7],
-		b.m[3] = A.ma[2], b.m[4] = A.ma[8];
-	c.m[0] = A.ma[1], c.m[1] = A.ma[4],
-		c.m[3] = A.ma[2], c.m[4] = A.ma[5];
+
+	a.m[0] = A.ma[4];
+	a.m[1] = A.ma[5];
+	a.m[2] = A.ma[7];
+	a.m[3] = A.ma[8];
+
+	b.m[0] = A.ma[1];
+	b.m[1] = A.ma[2];
+	b.m[2] = A.ma[7];
+	b.m[3] = A.ma[8];
+
+	c.m[0] = A.ma[1];
+	c.m[1] = A.ma[2];
+	c.m[2] = A.ma[4];
+	c.m[3] = A.ma[5];
+
 	return (A.ma[0] * determinant(a) -
 		A.ma[3] * determinant(b) +
 		A.ma[6] * determinant(c));
