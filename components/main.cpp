@@ -52,7 +52,7 @@ void main()
 */
 
 	//player
-	Transform playerTrans(400, 400, 1, 1, 0);
+	Transform playerTrans(400, 400, 10, 10, 0);
 	Rigidbody playerRigid;
 	SpaceshipLocomotion playerLoco;
 	SpaceshipController playerCon;
@@ -107,8 +107,7 @@ void main()
 		cameraTransform.m_position = 
 			lerp(cameraTransform.m_position,
 			(playerTrans.getGlobalPosition()
-				) / 1,
-//				+ sunTrans.getGlobalPosition()) / 2,
+				+ sunTrans.getGlobalPosition()) / 2,
 				1);
 
 		mat3 proj = translate(400, 400) * scale(1, 1);
@@ -147,4 +146,3 @@ void main()
 
 	sfw::termContext();
 }
-/*its broken, im crying... "wha"*/

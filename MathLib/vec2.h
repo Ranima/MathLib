@@ -55,3 +55,5 @@ vec2 CardinalSpline(const vec2 & start, const vec2 & mid, const vec2 & end, floa
 vec2 CatRomSpline(const vec2 & start, const vec2 & mid, const vec2 & end, float alpha);
 vec2 CubicBezier(const vec2 & start, const vec2 & midA, const vec2 & midB, const vec2 & end, float alpha);
 
+vec2 min(const vec2 &A, const vec2 &B);
+vec2 max(const vec2 &A, const vec2 &B);
