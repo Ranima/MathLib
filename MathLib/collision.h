@@ -1,12 +1,13 @@
 #pragma once
 #include "vec2.h"
+#include "shapes.h"
 
 struct CollisionData1D
 {
-	bool result;
+	bool result() const;
 	float penetrationDepth;
 	float collisionNormal;
-	float MTV;
+	float MTV() const;
 };
 
 CollisionData1D collisionDetection1D(float Amin, float Amax,
@@ -32,4 +33,23 @@ struct CollisionData
 	vec2 MTV() const;
 };
 
-//CollisionData boxCollision(const AABB &A, const)
+CollisionData boxCollision(const AABB &A, const vec2 &dA,
+	const AABB &B);
+
+struct CollisionDataSwept
+{
+	float entryTime, exitTime;
+	vec2 collisionNormal;
+	bool collides;
+
+	bool result() const;
+};
+
+CollisionDataSwept boxCollisionSwept(const AABB &A, const vec2 &dA,
+	const AABB &B, const vec2 &dB);
+
+CollisionData planeBoxCollision(const Plane &P,
+	const AABB &B);
+
+CollisionDataSwept planeBoxCollisionSwept(const Plane &P, const vec2 &Pvel,
+	const AABB &B, const vec2 &Bvel);

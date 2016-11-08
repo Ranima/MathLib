@@ -31,4 +31,14 @@ Plane operator*(const mat3 &T, const Plane &P);
 bool operator==(const Plane &A, const Plane &B);
 
 struct Ray  { };
-struct Hull { };
+struct Hull 
+{
+	vec2 vertices[16];
+	vec2 normals[16];
+	size_t vsize, nsize;
+
+	Hull(const vec2 *vertices, unsigned vsize);
+};
+
+Hull operator* (const mat3 &T, const Hull &H);
+bool operator==(const Hull &A, const Hull &B);
