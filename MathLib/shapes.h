@@ -33,11 +33,13 @@ bool operator==(const Plane &A, const Plane &B);
 struct Ray  { };
 struct Hull 
 {
-	vec2 vertices[16];
-	vec2 normals[16];
-	size_t vsize, nsize;
+	vec2 vertices[16];	
+	vec2 normals[16];	
+	unsigned int size;	
 
-	Hull(const vec2 *vertices, unsigned vsize);
+	Hull(const vec2 * a_vertices, unsigned vsize);
+
+	Hull();
 };
 
 Hull operator* (const mat3 &T, const Hull &H);

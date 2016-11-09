@@ -8,6 +8,8 @@
 #include "SpaceshipRenderer.h"
 #include "PlanetaryMotor.h"
 #include "PlantearyRenderer.h"
+#include "shapeDraw.h"
+#include "shapes.h"
 
 void main()
 {
@@ -142,7 +144,14 @@ void main()
 		moonRenderer.draw(camera, moon);
 
 		playerRender.draw(camera, playerTrans);
-	}
 
+		/*drawAABB(camera
+			* playerTrans.getGlobalTransform()
+			* AABB {0, 0, 1, 2}, RED);*/
+
+		/*drawPlane(camera
+			* playerTrans.getGlobalTransform()
+			* Plane {0, 0, 0, 1}, WHITE);*/
+	}
 	sfw::termContext();
 }

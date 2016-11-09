@@ -102,6 +102,31 @@ bool operator==(const Plane & A, const Plane & B)
 		return false;
 }
 
+Hull operator*(const mat3 & T, const Hull & H)
+{
+	Hull retval;
+	retval.size = H.size;
+	for (int i = 0; i < H.size; ++i)
+	{
+		retval.vertices[i] = (T * vec3{ H.vertices[i].x, H.vertices[i].y,1 }).xy;
+
+		retval.vertices[i] = (T * vec3{ H.normals[i].x, H.normals[i].y, 0 }).xy;
+	}
+	return retval;
+}
+
+bool operator==(const Hull & A, const Hull & B)
+{
+	bool retval = true;
+	
+	for (int i = 0; i < 16 && retval == true; ++i)
+	{
+		if (A.vertices[i] != B.vertices[i] || A.normals[i] != B.normals[i])
+			{retval = false;}
+	}
+	return retval;
+}
+
 vec2 AABB::min() const
 {
 	return pos - he;
@@ -110,4 +135,20 @@ vec2 AABB::min() const
 vec2 AABB::max() const
 {
 	return pos + he;
+}
+
+Hull::Hull(const vec2 * a_vertices, unsigned vsize)
+{
+	size = vsize;
+
+	for (int i = 0; i < size && i < 16; ++i)
+	{
+		vertices[i] = a_vertices[i];
+		normals[i] = -perp(normal(a_vertices[(i + 1) % size] 
+								- a_vertices[i]));
+	}
+}
+
+Hull::Hull()
+{
 }
