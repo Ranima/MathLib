@@ -145,13 +145,13 @@ void main()
 
 		playerRender.draw(camera, playerTrans);
 
-		/*drawAABB(camera
+		drawAABB(camera
 			* playerTrans.getGlobalTransform()
-			* AABB {0, 0, 1, 2}, RED);*/
+			* AABB {0, 0, 1, 2}, RED);
 
-		/*drawPlane(camera
+		drawPlane(camera
 			* playerTrans.getGlobalTransform()
-			* Plane {0, 0, 0, 1}, WHITE);*/
+			* Plane {0, 0, 0, 1}, WHITE);
 	}
 	sfw::termContext();
 }

@@ -39,7 +39,7 @@ float CollisionData1D::MTV() const
 bool sweptCollisionData1D::result() const
 		{return entryTime >= 0 && entryTime <= 1;}
 
-CollisionData boxCollision(const AABB & A, const vec2 & dA, const AABB & B)
+CollisionData boxCollision(const AABB & A, const vec2 & dA, const AABB & B, const vec2 &dB)
 {
 	CollisionData retval;
 
@@ -148,6 +148,47 @@ CollisionDataSwept planeBoxCollisionSwept(const Plane & P, const vec2 & Pvel, co
 	return retval;
 }
 
+CollisionData HullCollision(const Hull & A, const Hull & B)
+{
+	int size = 0;
+	vec2 axes[32];
+
+	for (int j = 0; j < A.size; ++j) axes[size++] = A.normals[j];
+	for (int j = 0; j < B.size; ++j) axes[size++] = B.normals[j];
+
+	CollisionData retval;
+	retval.penetrationDepth = INFINITY;
+
+	for (int j = 0; j < size; ++j)
+	{
+		vec2 &axis = axes[j];
+
+		float amin = INFINITY, amax = -INFINITY;
+		float bmin = INFINITY, bmax = -INFINITY;
+
+		amin = A.min(axis);
+		amax = A.max(axis);
+
+		bmin = B.min(axis);
+		bmax = B.max(axis);
+
+		float pDr, pDl, pD, H;
+		pDr = amax - bmin;
+		pDl = bmax - amin;
+
+		pD = fminf(pDr, pDl);
+
+		H = copysignf(1, pDl - pDr);
+
+		if (pD < retval.penetrationDepth)
+		{
+			retval.penetrationDepth = pD;
+			retval.collisionNormal = axis * H;
+		}
+	}
+	return retval;
+}
+
 bool CollisionData::result() const
 {
 	return penetrationDepth >= 0;
@@ -162,3 +203,4 @@ bool CollisionDataSwept::result() const
 {
 	return entryTime >= 0 && entryTime <= 1 && collides;
 }
+

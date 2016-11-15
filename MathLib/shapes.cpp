@@ -1,4 +1,6 @@
 #include "shapes.h"
+#include <cmath>
+#include "Flops.h"
 
 Circle operator*(const mat3 & T, const Circle & C)
 {
@@ -102,6 +104,11 @@ bool operator==(const Plane & A, const Plane & B)
 		return false;
 }
 
+//Ray operator*(const mat3 & T, const Ray & R)
+//{
+//	return Ray();
+//}
+
 Hull operator*(const mat3 & T, const Hull & H)
 {
 	Hull retval;
@@ -135,6 +142,22 @@ vec2 AABB::min() const
 vec2 AABB::max() const
 {
 	return pos + he;
+}
+
+float Hull::min(const vec2 & axis) const
+{
+	float amin = INFINITY;
+	for (int i = 0; i < size; ++i)
+		amin = fminf(dot(axis, vertices[i]), amin);
+	return amin;
+}
+
+float Hull::max(const vec2 & axis) const
+{
+	float amin = INFINITY;
+	for (int i = 0; i < size; ++i)
+		amin = fminf(dot(axis, vertices[i]), amin);
+	return amin;
 }
 
 Hull::Hull(const vec2 * a_vertices, unsigned vsize)
