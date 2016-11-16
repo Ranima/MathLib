@@ -21,7 +21,7 @@ void drawAABB(const AABB & B, unsigned color)
 
 void drawPlane(const Plane &P, unsigned color)
 {
-	sfw::drawCircle(P.pos.y, 12, 12, color);
+	sfw::drawCircle(P.pos.x, P.pos.y, 120, 12U, color);
 
 	sfw::drawLine(P.pos.x, P.pos.y,
 		P.pos.x + P.dir.x * 10, P.pos.y + P.dir.y * 10, color);
