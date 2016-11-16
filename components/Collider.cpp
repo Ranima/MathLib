@@ -31,7 +31,7 @@ CollisionData ColliderCollision(const Transform & AT, const Collider & AC, const
 	CollisionData retval;
 
 	retval = boxCollision(AT.getGlobalTransform() * AC.box,
-		 BC.box * BT.getGlobalTransform());
+		BT.getGlobalTransform() * BC.box);
 
 	if (retval.penetrationDepth >= 0)
 		retval = HullCollision(AT.getGlobalTransform() * AC.hull,

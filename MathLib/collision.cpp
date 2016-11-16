@@ -39,7 +39,7 @@ float CollisionData1D::MTV() const
 bool sweptCollisionData1D::result() const
 		{return entryTime >= 0 && entryTime <= 1;}
 
-CollisionData boxCollision(const AABB & A, const vec2 & dA, const AABB & B, const vec2 &dB)
+CollisionData boxCollision(const AABB & A, const AABB & B)
 {
 	CollisionData retval;
 

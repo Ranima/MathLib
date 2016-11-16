@@ -20,6 +20,7 @@ struct AABB
 };
 
 AABB operator*(const mat3 &T, const AABB &box);
+AABB operator*(const AABB &box, const mat3 &T);
 bool operator==(const AABB &A, const AABB &B);
 
 struct Plane

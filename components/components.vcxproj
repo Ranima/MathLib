@@ -119,10 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Hull.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlanetaryMotor.cpp" />
     <ClCompile Include="PlantearyRenderer.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="shapeDraw.cpp" />
     <ClCompile Include="spaceshipControler.cpp" />
     <ClCompile Include="SpaceshipLoco.cpp" />
     <ClCompile Include="SpaceshipRenderer.cpp" />
@@ -130,10 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Hull.h" />
     <ClInclude Include="PlanetaryMotor.h" />
     <ClInclude Include="PlantearyRenderer.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="sfwdraw.h" />
+    <ClInclude Include="shapeDraw.h" />
     <ClInclude Include="spaceshipControler.h" />
     <ClInclude Include="SpaceshipLoco.h" />
     <ClInclude Include="SpaceshipRenderer.h" />
