@@ -25,7 +25,11 @@ void main()
 	SpaceshipLocomotion playerLoco;
 	SpaceshipController playerCon;
 	SpaceshipRenderer playerRender;
+	AABB playerOBB;
+	AABB playerAABB;
 	playerRigid.velocity = vec2{ 0,0 };
+	playerOBB.he = vec2{ 2,1 };
+	playerOBB.pos = playerTrans.m_position;
 
 	/*//Sun
 	Transform sunTrans;
@@ -34,7 +38,7 @@ void main()
 	PlanetaryMotor sunMotor;
 	sunMotor.m_rotationspeed = 5;
 	PlanetaryRenderer sunRenderer(YELLOW, 100);
-
+	
 	//Planet
 	Transform planet;
 	planet.m_position = vec2{ 150, 0 };
@@ -72,8 +76,9 @@ void main()
 		plan1RB.integrate(planet, deltaTime);
 		sunRbody.integrate(sunTrans, deltaTime);*/
 
-		/*cameraTransform.m_position = 
-			lerp(cameraTransform.m_position,
+		cameraTransform.m_position = 
+			playerTrans.getGlobalPosition();
+			/*lerp(cameraTransform.m_position,
 			(playerTrans.getGlobalPosition()
 				+ sunTrans.getGlobalPosition()) / 2,
 				1);*/
@@ -84,6 +89,7 @@ void main()
 		mat3 camera = proj * view;
 
 		playerTrans.debugDraw(camera);
+		
 		/*sunTrans.debugDraw(camera);
 		planet.debugDraw(camera);
 		moon.debugDraw(camera);*/
@@ -100,10 +106,13 @@ void main()
 		moonRenderer.draw(camera, moon);*/
 
 		playerRender.draw(camera, playerTrans);
-
+		
+		//playerOBB.min() = playerRender.;
+		//playerOBB.max();
+		
 		drawAABB(camera
 			* playerTrans.getGlobalTransform()
-			* AABB {0, 0, 1, 2}, RED);
+			* playerOBB, RED);
 
 		drawPlane(camera
 			* playerTrans.getGlobalTransform()
