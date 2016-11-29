@@ -13,6 +13,7 @@ public:
 	void update();					//updates the square
 	void debugDraw();				//gives it visuals
 	void testPhysics();				//adds forces
+	void testController();			//allows player movement
 };
 
 class line

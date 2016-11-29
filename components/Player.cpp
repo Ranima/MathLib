@@ -33,5 +33,11 @@ void Square::debugDraw()
 
 void Square::testPhysics()
 {
+	float deltaTime = sfw::getDeltaTime();
+	midpoint.y = midpoint.y - (midpoint.y * deltaTime)+.5;
+}
 
+void Square::testController()
+{
+		
 }

@@ -17,7 +17,7 @@ void main()
 	//Transform trans;
 
 	Square player;
-	vec2 startPos = {40, 40};
+	vec2 startPos = {40, 90};
 	player.StartPosition(startPos);
 	player.SquareInit();
 
@@ -31,6 +31,7 @@ void main()
 	{
 		float deltaTime = sfw::getDeltaTime();
 		
+		player.testPhysics();
 		player.update();
 		player.debugDraw();
 	}
