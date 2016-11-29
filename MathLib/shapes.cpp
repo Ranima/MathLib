@@ -130,7 +130,7 @@ bool operator==(const Plane & A, const Plane & B)
 
 //Ray operator*(const mat3 & T, const Ray & R)
 //{
-//	return Ray();
+//	return R();
 //}
 
 Hull operator*(const mat3 & T, const Hull & H)
