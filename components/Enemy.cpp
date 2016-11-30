@@ -36,7 +36,7 @@ void Enemy::testPhysics()
 	bool bob = false;
 	float deltaTime = sfw::getDeltaTime();
 	int DeltaTime = sfw::getDeltaTime();
-	midpoint.y = midpoint.y - (midpoint.y * deltaTime) + .5;
+	midpoint.y = midpoint.y + (midpoint.y * deltaTime) + .5;
 	/*if (fequals(DeltaTime % 2, 1))
 	{bob = !bob;}
 	if (bob == true)

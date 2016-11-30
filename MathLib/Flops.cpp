@@ -13,6 +13,17 @@ bool fequals(float lhs, float rhs)
 		return false;
 }
 
+bool Fequals(float lhs, float rhs)
+{
+	float holder = abs(lhs - rhs);
+
+	if (holder < 1.f)
+		return true;
+	else
+		return false;
+}
+
+
 float deg2rad(float deg)
 {
 	return 0.0174533 * deg;

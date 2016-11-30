@@ -16,11 +16,14 @@ void main()
 	sfw::setBackgroundColor(BLACK);
 	//Transform trans;
 
+	//players stuff
 	Square player;
-	vec2 startPos = {40, 90};
+	vec2 startPos = {40, 180};
 	player.StartPosition(startPos);
 	player.SquareInit();
+	bool bob = false;
 
+	//stop point
 	Plane ground;
 	ground.pos = { 0, 5 };
 	ground.dir = { 1, 0 };
@@ -30,8 +33,10 @@ void main()
 	while (sfw::stepContext())
 	{
 		float deltaTime = sfw::getDeltaTime();
+
+
 		
-		player.testPhysics();
+		player.testPhysics(bob);
 		player.testController();
 		player.update();
 		player.debugDraw();
