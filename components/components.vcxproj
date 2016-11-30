@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Hull.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlanetaryMotor.cpp" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Hull.h" />
     <ClInclude Include="PlanetaryMotor.h" />
     <ClInclude Include="PlantearyRenderer.h" />

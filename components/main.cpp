@@ -32,6 +32,7 @@ void main()
 		float deltaTime = sfw::getDeltaTime();
 		
 		player.testPhysics();
+		player.testController();
 		player.update();
 		player.debugDraw();
 	}
