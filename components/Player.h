@@ -14,7 +14,7 @@ public:
 	void StartPosition(vec2 pos);	//sets start position
 	void update();					//updates the square
 	void debugDraw();				//gives it visuals
-	void testPhysics(bool bob);				//adds forces
+	void testPhysics(int YStart);				//adds forces
 	void testController();			//allows player movement
 };
 

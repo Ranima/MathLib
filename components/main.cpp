@@ -17,16 +17,15 @@ void main()
 	//Transform trans;
 
 	//players stuff
-	Square player;
-	vec2 startPos = {40, 180};
-	player.StartPosition(startPos);
-	player.SquareInit();
-	bool bob = false;
+	Square player1;
+	vec2 startPos1 = {40, 180};
+	player1.StartPosition(startPos1);
+	player1.SquareInit();
 
-	//stop point
-	Plane ground;
-	ground.pos = { 0, 5 };
-	ground.dir = { 1, 0 };
+	Square player2;
+	vec2 startPos2 = { 40, 180 };
+	player2.StartPosition(startPos2);
+	player2.SquareInit();
 	
 	Transform cameraTransform;
 
@@ -36,10 +35,14 @@ void main()
 
 
 		
-		player.testPhysics(bob);
-		player.testController();
-		player.update();
-		player.debugDraw();
+		player1.testPhysics(30);
+		player2.testPhysics(470);
+		player1.testController();
+		player2.testController();
+		player1.update();
+		player2.update();
+		player1.debugDraw();
+		player2.debugDraw();
 	}
 	sfw::termContext();
 }
