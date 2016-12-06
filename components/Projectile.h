@@ -1,11 +1,17 @@
 #pragma once
 #include "Rigidbody.h"
 #include "Transform.h"
+#include "vec2.h"
 
 class Projectile
 {
 private:
-public:
 	Transform Trans;
 	Rigidbody Rigid;
+	float radius;
+
+public:
+	void init(vec2 start);
+	void update();
+	void draw();
 };

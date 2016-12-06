@@ -5,10 +5,9 @@ class Square
 {
 private:
 	vec2 pointA, pointB, pointC, pointD;
-	vec2 midpoint;
 public:
-
-	vec2 turret;					//lasers will shoot out of this
+	//vec2 turret;					//lasers will shoot out of this
+	vec2 midpoint;
 
 	void SquareInit();				//initializes the Square
 	void StartPosition(vec2 pos);	//sets start position
