@@ -8,7 +8,7 @@ float rad2deg(float rad);
 float linearHalf(float x);
 float speedInc(float x);
 float speedDec(float x);
-float Hangle(float x);
+float Hangle(float x); //need to add
 float bounce(float x);
 float bounceFlip(float x);
 float parabFlip(float x);
