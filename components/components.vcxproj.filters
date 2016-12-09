@@ -108,4 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\dep\Debug\sfw.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
+    <Library Include="..\dep\Release\sfw.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
+  </ItemGroup>
 </Project>
