@@ -1,9 +1,11 @@
 #include "Player.h"
 #include "sfwdraw.h"
 #include "Flops.h"
+#include "GameState.h"
 
 void Square::SquareInit()
 {
+	force = 320;
 	pointA = midpoint + vec2{ -20, -20 };
 	pointB = midpoint + vec2{ -20, 20 };
 	pointC = midpoint + vec2{ 20, 20 };
@@ -19,12 +21,39 @@ void Square::StartPosition(vec2 pos)
 	midpoint = pos;
 }
 
-void Square::update()
+void Square::update(float deltaTime, GameState &gameState)
 {
 	pointA = midpoint + vec2{ -20, -20 };
 	pointB = midpoint + vec2{ -20, 20 };
 	pointC = midpoint + vec2{ 20, 20 };
 	pointD = midpoint + vec2{ 20, -20 };
+
+	if (id == 0)
+	{
+		if (gameState.player1proj.isFired == false)
+		{
+			gameState.player1proj.Trans.m_position = midpoint;
+
+			if (isFiring)
+			{
+				gameState.player1proj.isFired = true;
+				gameState.player1proj.Rigid.addImpulse({ 0, 100 });
+			}
+		}
+	}
+	else if (id == 1)
+	{
+		if (gameState.player2proj.isFired == false)
+		{
+			gameState.player2proj.Trans.m_position = midpoint;
+
+			if (isFiring)
+			{
+				gameState.player2proj.isFired = true;
+				gameState.player2proj.Rigid.addImpulse({ 0, -100 });
+			}
+		}
+	}
 	/*if (midpoint.y < 250)
 		turret = midpoint + vec2{ 0, 30 };
 	if (midpoint.y > 250)
@@ -62,11 +91,10 @@ void Square::testController()
 	if (midpoint.y < 250)
 	{
 		if (sfw::getKey('D') == true)
-			{midpoint.x = midpoint.x + 320.f * sfw::getDeltaTime();}
+			{midpoint.x = midpoint.x + force * sfw::getDeltaTime();}
 		if (sfw::getKey('A') == true)
-			{midpoint.x = midpoint.x - 320.f * sfw::getDeltaTime();}
-		if (sfw::getKey('W') == true)
-			{}
+			{midpoint.x = midpoint.x - force * sfw::getDeltaTime();}
+		isFiring = sfw::getKey('W');
 		if (sfw::getKey('S') == true)
 			{}
 	}
@@ -74,12 +102,11 @@ void Square::testController()
 	if (midpoint.y > 250)
 	{
 		if (sfw::getKey(KEY_RIGHT) == true)
-			{midpoint.x = midpoint.x + 320.f * sfw::getDeltaTime();}
+			{midpoint.x = midpoint.x + force * sfw::getDeltaTime();}
 		if (sfw::getKey(KEY_LEFT) == true)
-			{midpoint.x = midpoint.x - 320.f * sfw::getDeltaTime();}
+			{midpoint.x = midpoint.x - force * sfw::getDeltaTime();}
 		if (sfw::getKey(KEY_UP) == true)
 			{}
-		if (sfw::getKey(KEY_DOWN) == true)
-			{}
+		isFiring = sfw::getKey(KEY_DOWN);
 	}
 }
