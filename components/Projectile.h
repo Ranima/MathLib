@@ -18,6 +18,6 @@ public:
 
 	void init(vec2 start);
 	bool ballCollide(Projectile ball);
-	void update(float deltaTime, class GameState& gameState);
+	void update(float deltaTime, class GameState& gameState, Projectile ball);
 	void draw();
 };

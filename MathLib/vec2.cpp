@@ -111,6 +111,13 @@ float magnitude(const vec2 &v)
 	return sqrt(v.x*v.x + v.y*v.y);
 }
 
+float distance(vec2 A, vec2 B)
+{
+	int a = (B.x - A.x);
+	int b = (B.y - A.y);
+	return sqrtf(a^2 + b^2);
+}
+
 vec2 lerp(const vec2 & start, const vec2 & end, float alpha)
 {
 	return start + alpha * (end - start);

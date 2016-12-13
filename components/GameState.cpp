@@ -26,8 +26,8 @@ void GameState::update(float deltaTime)
 	player1.update(deltaTime, *this);
 	player2.update(deltaTime, *this);
 
-	player1proj.update(deltaTime, *this);
-	player2proj.update(deltaTime, *this);
+	player1proj.update(deltaTime, *this, player2proj);
+	player2proj.update(deltaTime, *this, player1proj);
 }
 
 void GameState::draw()
