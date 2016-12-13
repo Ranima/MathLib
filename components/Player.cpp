@@ -38,6 +38,7 @@ void Square::update(float deltaTime, GameState &gameState)
 			{
 				gameState.player1proj.isFired = true;
 				gameState.player1proj.Rigid.addImpulse({ 0, 100 });
+				x += 1;
 			}
 		}
 	}
@@ -51,6 +52,7 @@ void Square::update(float deltaTime, GameState &gameState)
 			{
 				gameState.player2proj.isFired = true;
 				gameState.player2proj.Rigid.addImpulse({ 0, -100 });
+				x += 1;
 			}
 		}
 	}

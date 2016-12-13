@@ -6,7 +6,7 @@ class Square
 {
 private:
 	vec2 pointA, pointB, pointC, pointD;
-
+	int x;
 public:
 	//vec2 turret;					//lasers will shoot out of this
 	vec2 midpoint;

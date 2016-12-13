@@ -17,6 +17,7 @@ public:
 	bool isFired;
 
 	void init(vec2 start);
+	bool ballCollide(Projectile ball);
 	void update(float deltaTime, class GameState& gameState);
 	void draw();
 };

@@ -13,9 +13,15 @@ void Projectile::init(vec2 start)
 		 Trans.m_facing = 1;}
 }
 
+bool Projectile::ballCollide(Projectile ball)
+{
+//	if (Trans.m_position > ball.Trans.m_position)
+//		{return 0 < Trans.m_position - ball.Trans.m_position;}
+}
+
 void Projectile::update(float deltaTime, class GameState& gameState)
 {
-	//Rigid.addForce(Trans.m_position);
+	Rigid.addForce(Trans.m_position);
 	Rigid.integrate(Trans, deltaTime);
 }
 

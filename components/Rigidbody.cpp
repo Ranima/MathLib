@@ -33,7 +33,7 @@ void Rigidbody::addTorque(float a_torque)
 
 void Rigidbody::integrate(Transform & trans, float deltaTime)
 {
-	acceleration = force / mass;
+	//acceleration = force / mass;
 	velocity += acceleration * deltaTime + impulse / mass;
 	trans.m_position = trans.m_position + velocity * deltaTime;
 
