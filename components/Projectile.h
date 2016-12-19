@@ -7,7 +7,7 @@
 class Projectile
 {
 private:
-
+	vec2 move;
 
 public:
 	Transform Trans;
