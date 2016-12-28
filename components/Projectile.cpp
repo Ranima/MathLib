@@ -30,7 +30,7 @@ void Projectile::update(float deltaTime, class GameState& gameState, Projectile 
 	Rigid.integrate(Trans, deltaTime);
 	if (ballCollide(ball) == true)
 	{
-		move = Trans.m_position / ball.Trans.m_position * 100;
+		move = (Trans.m_position / ball.Trans.m_position) * 100;
 		Rigid.addImpulse(move);
 	}
 		//Rigid.addTorque(Trans.m_facing);}
