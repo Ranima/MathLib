@@ -17,16 +17,23 @@ void Projectile::init(vec2 start)
 
 bool Projectile::ballCollide(Projectile ball)
 {
-	return (4 > distance(Trans.m_position, ball.Trans.m_position));
+	if (4 > distance(Trans.m_position, ball.Trans.m_position))
+		return true;
+	else
+		return false;
 }
 
 void Projectile::update(float deltaTime, class GameState& gameState, Projectile ball)
 {
+	
 	Rigid.addForce(move);
 	Rigid.integrate(Trans, deltaTime);
 	if (ballCollide(ball) == true)
-		{Trans.m_facing = dot(Trans.m_position, ball.Trans.m_position);
-		Rigid.addTorque(Trans.m_facing);}
+	{
+		move = Trans.m_position / ball.Trans.m_position * 100;
+		Rigid.addImpulse(move);
+	}
+		//Rigid.addTorque(Trans.m_facing);}
 }
 
 void Projectile::draw()

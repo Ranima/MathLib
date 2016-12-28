@@ -7,17 +7,17 @@
 class Projectile
 {
 private:
-	vec2 move;
+	vec2 move;							//movement speed
 
 public:
-	Transform Trans;
-	Rigidbody Rigid;
+	Transform Trans;					//Position
+	Rigidbody Rigid;					//Motion
 	float radius;
 
 	bool isFired;
 
 	void init(vec2 start);
-	bool ballCollide(Projectile ball);
+	bool ballCollide(Projectile ball);	//Collision
 	void update(float deltaTime, class GameState& gameState, Projectile ball);
 	void draw();
 };
